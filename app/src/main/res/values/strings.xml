@@ -13,5 +13,8 @@
 
     <string name="app_menu_name">OoT Randomizer Tracker</string>
     <string name="sub_app_name_menu">For Android</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="default_mode">Default</string>
 
 </resources>
