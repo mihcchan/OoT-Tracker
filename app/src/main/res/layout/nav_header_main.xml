@@ -16,14 +16,14 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="16dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/nav_header_desc"
         android:cropToPadding="false"
         android:paddingTop="0dp"
         android:scaleType="centerInside"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
+        android:scaleX="1.7"
+        android:scaleY="1.7"
         app:srcCompat="@drawable/oot3d_ocarina_of_time_icon" />
 
     <TextView
