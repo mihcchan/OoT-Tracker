@@ -1,19 +1,18 @@
 package com.example.oot_tracker_2.ui.home
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.oot_tracker_2.R
 import com.example.oot_tracker_2.databinding.FragmentHomeBinding
+import hallianinc.opensource.timecounter.StopWatch
 
 class HomeFragment : Fragment() {
 
@@ -41,6 +40,41 @@ class HomeFragment : Fragment() {
         strengthButton.setOnClickListener {
             strengthChange(strengthButton)
         }
+
+        val stopwatch = StopWatch(binding.chronometer)
+        //var time = stopwatch.time
+        val startStopButton: ToggleButton = binding.playPauseButton
+        val stopButton: ImageButton = binding.stopButton
+        startStopButton.setOnClickListener {
+            if (startStopButton.isChecked) {
+                stopwatch.resume()
+            } else {
+                stopwatch.pause()
+            }
+        }
+
+        stopButton.setOnClickListener {
+            stopwatch.stop()
+        }
+
+//        val chronometer : Chronometer = binding.chronometer
+//
+//        val startStopButton : ToggleButton = binding.playPauseButton
+//        val stopButton : ImageButton = binding.stopButton
+//        startStopButton.setOnClickListener{
+//            if (startStopButton.isChecked){
+//                chronometer.base = SystemClock.elapsedRealtime() - pauseOffSet
+//                chronometer.start()
+//            }else{
+//                pauseOffSet = SystemClock.elapsedRealtime() - chronometer.base
+//                chronometer.stop()
+//            }
+//        }
+//
+//        stopButton.setOnClickListener{
+//            pauseOffSet = 0L
+//            chronometer.base = SystemClock.elapsedRealtime()
+//        }
 
         return root
     }
