@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
             strengthChange(strengthButton)
         }
 
-        val chronometer: ChronometerWithMS = binding.chronometer2
+        val chronometer: ChronometerWithMS = binding.chronometer
         val startStopButton: ToggleButton = binding.playPauseButton
         val stopButton: ImageButton = binding.stopButton
 
