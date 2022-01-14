@@ -7,9 +7,10 @@
     tools:context=".ui.home.HomeFragment">
 
     <ToggleButton
-        android:id="@+id/toggleButton"
+        android:id="@+id/slingshotButton"
         android:layout_width="@dimen/item_size"
         android:layout_height="@dimen/item_size"
+        android:layout_margin="8dp"
         android:background="@drawable/selector_slingshot"
         android:textOff=""
         android:textOn=""
@@ -17,13 +18,45 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/bombButton"
         android:layout_width="@dimen/item_size"
         android:layout_height="@dimen/item_size"
-        android:src="@drawable/oot3d_goron_bracelet_icon_bw"
         android:background="@null"
-        app:layout_constraintStart_toEndOf="@+id/toggleButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/oot3d_bomb_icon_bw"
+        app:layout_constraintBottom_toBottomOf="@+id/slingshotButton"
+        app:layout_constraintStart_toEndOf="@+id/slingshotButton"
+        app:layout_constraintTop_toTopOf="@+id/slingshotButton" />
+
+    <ImageButton
+        android:id="@+id/bombchuButton"
+        android:layout_width="@dimen/item_size"
+        android:layout_height="@dimen/item_size"
+        android:background="@null"
+        android:src="@drawable/oot3d_bombchu_icon_bw"
+        app:layout_constraintBottom_toBottomOf="@+id/bombButton"
+        app:layout_constraintStart_toEndOf="@+id/bombButton"
+        app:layout_constraintTop_toTopOf="@+id/bombButton" />
+
+    <ImageButton
+        android:id="@+id/hookshotButton"
+        android:layout_width="@dimen/item_size"
+        android:layout_height="@dimen/item_size"
+        android:background="@null"
+        android:src="@drawable/oot3d_hookshot_icon_bw"
+        app:layout_constraintBottom_toBottomOf="@+id/bombchuButton"
+        app:layout_constraintStart_toEndOf="@+id/bombchuButton"
+        app:layout_constraintTop_toTopOf="@+id/bombchuButton" />
+
+    <ImageButton
+        android:id="@+id/strengthButton"
+        android:layout_width="@dimen/item_size"
+        android:layout_height="@dimen/item_size"
+        android:background="@null"
+        android:visibility="invisible"
+        android:src="@drawable/oot3d_goron_bracelet_icon_bw"
+        app:layout_constraintBottom_toBottomOf="@+id/bombButton"
+        app:layout_constraintStart_toEndOf="@+id/bombButton"
+        app:layout_constraintTop_toTopOf="@+id/bombButton" />
 
     <!--        <Chronometer-->
     <!--            android:id="@+id/chronometer"-->

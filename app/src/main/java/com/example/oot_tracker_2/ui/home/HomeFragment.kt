@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val strengthButton: ImageButton = binding.imageButton
+        val strengthButton: ImageButton = binding.strengthButton
         strengthButton.setOnClickListener {
             strengthChange(strengthButton)
         }
