@@ -1,113 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:fillViewport="true">
 
-    <ToggleButton
-        android:id="@+id/slingshotButton"
-        android:layout_width="@dimen/item_size"
-        android:layout_height="@dimen/item_size"
-        android:layout_margin="8dp"
-        android:background="@drawable/selector_slingshot"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/bombButton"
-        android:layout_width="@dimen/item_size"
-        android:layout_height="@dimen/item_size"
-        android:background="@null"
-        android:src="@drawable/oot3d_bomb_icon_bw"
-        app:layout_constraintBottom_toBottomOf="@+id/slingshotButton"
-        app:layout_constraintStart_toEndOf="@+id/slingshotButton"
-        app:layout_constraintTop_toTopOf="@+id/slingshotButton" />
-
-    <ImageButton
-        android:id="@+id/bombchuButton"
-        android:layout_width="@dimen/item_size"
-        android:layout_height="@dimen/item_size"
-        android:background="@null"
-        android:src="@drawable/oot3d_bombchu_icon_bw"
-        app:layout_constraintBottom_toBottomOf="@+id/bombButton"
-        app:layout_constraintStart_toEndOf="@+id/bombButton"
-        app:layout_constraintTop_toTopOf="@+id/bombButton" />
-
-    <ImageButton
-        android:id="@+id/hookshotButton"
-        android:layout_width="@dimen/item_size"
-        android:layout_height="@dimen/item_size"
-        android:background="@null"
-        android:src="@drawable/oot3d_hookshot_icon_bw"
-        app:layout_constraintBottom_toBottomOf="@+id/bombchuButton"
-        app:layout_constraintStart_toEndOf="@+id/bombchuButton"
-        app:layout_constraintTop_toTopOf="@+id/bombchuButton" />
-
-    <ImageButton
-        android:id="@+id/strengthButton"
-        android:layout_width="@dimen/item_size"
-        android:layout_height="@dimen/item_size"
-        android:background="@null"
-        android:visibility="invisible"
-        android:src="@drawable/oot3d_goron_bracelet_icon_bw"
-        app:layout_constraintBottom_toBottomOf="@+id/bombButton"
-        app:layout_constraintStart_toEndOf="@+id/bombButton"
-        app:layout_constraintTop_toTopOf="@+id/bombButton" />
-
-    <!--        <Chronometer-->
-    <!--            android:id="@+id/chronometer"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="32dp"-->
-    <!--            android:format="00:00:00"-->
-    <!--            android:textSize="26sp"-->
-    <!--            app:layout_constraintBottom_toBottomOf="@+id/playPauseButton"-->
-    <!--            app:layout_constraintEnd_toStartOf="@+id/playPauseButton"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="@+id/playPauseButton" />-->
-
-    <com.example.oot_tracker_2.ChronometerWithMS
-        android:id="@+id/chronometer"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:format="00:00:00"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@+id/playPauseButton"
-        app:layout_constraintEnd_toStartOf="@+id/playPauseButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/playPauseButton" />
+        tools:context=".ui.home.HomeFragment">
 
 
-    <ToggleButton
-        android:id="@+id/playPauseButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/selector_play_pause"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chronometer2" />
+        <ImageView
+            android:id="@+id/slingshotImage"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:layout_margin="8dp"
+            android:src="@drawable/oot3d_fairy_slingshot_icon_bw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ToggleButton
+            android:id="@+id/slingshotButton"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:layout_margin="8dp"
+            android:background="@drawable/selector_slingshot"
+            android:textOff=""
+            android:textOn=""
+            android:contentDescription="@string/slingshot_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/bombImage"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:src="@drawable/oot3d_bomb_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/slingshotButton"
+            app:layout_constraintStart_toEndOf="@+id/slingshotButton"
+            app:layout_constraintTop_toTopOf="@+id/slingshotButton"
+            tools:ignore="ContentDescription" />
+
+        <ToggleButton
+            android:id="@+id/bombButton"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@drawable/selector_bomb"
+            android:textOff=""
+            android:textOn=""
+            android:contentDescription="@string/bomb_button"
+            app:layout_constraintBottom_toBottomOf="@+id/slingshotButton"
+            app:layout_constraintStart_toEndOf="@+id/slingshotButton"
+            app:layout_constraintTop_toTopOf="@+id/slingshotButton" />
+
+        <ImageView
+            android:id="@+id/bombchuImage"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@drawable/oot3d_bombchu_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/bombButton"
+            app:layout_constraintStart_toEndOf="@+id/bombButton"
+            app:layout_constraintTop_toTopOf="@+id/bombButton"
+            android:contentDescription="@string/bombchu_button" />
+
+        <ToggleButton
+            android:id="@+id/bombchuButton"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@drawable/selector_bombchu"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="@+id/bombButton"
+            app:layout_constraintStart_toEndOf="@+id/bombButton"
+            app:layout_constraintTop_toTopOf="@+id/bombButton" />
+
+        <ImageView
+            android:id="@+id/hookshotImage"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@null"
+            android:src="@drawable/oot3d_hookshot_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/bombchuButton"
+            app:layout_constraintStart_toEndOf="@+id/bombchuButton"
+            app:layout_constraintTop_toTopOf="@+id/bombchuButton"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/hookshotButton"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@null"
+            android:src="@drawable/oot3d_hookshot_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/bombchuButton"
+            app:layout_constraintStart_toEndOf="@+id/bombchuButton"
+            app:layout_constraintTop_toTopOf="@+id/bombchuButton"
+            android:contentDescription="@string/hookshot_button" />
+
+        <ImageView
+            android:id="@+id/bowImage"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@null"
+            android:src="@drawable/oot3d_fairy_bow_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/hookshotButton"
+            app:layout_constraintStart_toEndOf="@+id/hookshotButton"
+            app:layout_constraintTop_toTopOf="@+id/hookshotButton"
+            tools:ignore="ContentDescription" />
+
+        <ToggleButton
+            android:id="@+id/bowButton"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@drawable/selector_bow"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="@+id/hookshotButton"
+            app:layout_constraintStart_toEndOf="@+id/hookshotButton"
+            app:layout_constraintTop_toTopOf="@+id/hookshotButton" />
+
+        <ImageView
+            android:id="@+id/fireLighArrowImage"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@null"
+            android:src="@drawable/oot3d_light_arrow_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/bowButton"
+            app:layout_constraintStart_toEndOf="@+id/bowButton"
+            app:layout_constraintTop_toTopOf="@+id/bowButton"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/fireLighArrowButton"
+            android:layout_width="@dimen/item_size"
+            android:layout_height="@dimen/item_size"
+            android:background="@null"
+            android:src="@drawable/oot3d_fire_arrow_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/bowButton"
+            app:layout_constraintStart_toEndOf="@+id/bowButton"
+            app:layout_constraintTop_toTopOf="@+id/bowButton"
+            android:contentDescription="@string/hookshot_button" />
 
 
-    <ImageButton
-        android:id="@+id/stopButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:scaleX="1.6"
-        android:scaleY="1.6"
-        android:src="@drawable/ic_baseline_stop_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playPauseButton" />
+        <ImageButton
+            android:id="@+id/strengthButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/oot3d_goron_bracelet_icon_bw"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/bombButton"
+            app:layout_constraintStart_toEndOf="@+id/bombButton"
+            app:layout_constraintTop_toTopOf="@+id/bombButton" />
+
+        <!--        <Chronometer-->
+        <!--            android:id="@+id/chronometer"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="32dp"-->
+        <!--            android:format="00:00:00"-->
+        <!--            android:textSize="26sp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/playPauseButton"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/playPauseButton"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/playPauseButton" />-->
+
+        <!--        <com.example.oot_tracker_2.ChronometerWithMS-->
+        <!--            android:id="@+id/chronometer"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="32dp"-->
+        <!--            android:format="00:00:00"-->
+        <!--            android:textSize="26sp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/playPauseButton"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/playPauseButton"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/playPauseButton" />-->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--        <ToggleButton-->
+        <!--            android:id="@+id/playPauseButton"-->
+        <!--            android:layout_width="40dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginBottom="8dp"-->
+        <!--            android:background="@drawable/selector_play_pause"-->
+        <!--            android:textOff=""-->
+        <!--            android:textOn=""-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/chronometer" />-->
+
+
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/stopButton"-->
+        <!--            android:layout_width="40dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginBottom="8dp"-->
+        <!--            android:background="@null"-->
+        <!--            android:scaleX="1.6"-->
+        <!--            android:scaleY="1.6"-->
+        <!--            android:src="@drawable/ic_baseline_stop_24"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/playPauseButton" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

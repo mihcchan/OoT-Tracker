@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.ImageButton
+import android.widget.ToggleButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -51,6 +53,26 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val chronometer: ChronometerWithMS = binding.appBarMain.chronometer
+        val startStopButton: ToggleButton = binding.appBarMain.playPauseButton
+        val stopButton: ImageButton = binding.appBarMain.stopButton
+
+        startStopButton.setOnClickListener {
+            if (startStopButton.isChecked) {
+                chronometer.restart()
+            } else {
+                chronometer.stop()
+            }
+        }
+
+        stopButton.setOnClickListener {
+            if (startStopButton.isChecked) {
+                startStopButton.toggle()
+            }
+            chronometer.stop()
+            chronometer.resetTime()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
