@@ -127,18 +127,17 @@
             android:layout_width="@dimen/item_size"
             android:layout_height="@dimen/item_size"
             android:background="@null"
-            android:src="@drawable/oot3d_light_arrow_icon_bw"
+            android:src="@drawable/oot3d_fire_ice_arrow_bw"
             app:layout_constraintBottom_toBottomOf="@+id/bowButton"
             app:layout_constraintStart_toEndOf="@+id/bowButton"
             app:layout_constraintTop_toTopOf="@+id/bowButton"
             tools:ignore="ContentDescription" />
-
         <ImageButton
-            android:id="@+id/fireLighArrowButton"
+            android:id="@+id/fireLightArrowButton"
             android:layout_width="@dimen/item_size"
             android:layout_height="@dimen/item_size"
             android:background="@null"
-            android:src="@drawable/oot3d_fire_arrow_icon_bw"
+            android:src="@drawable/oot3d_light_arrow_icon_bw"
             app:layout_constraintBottom_toBottomOf="@+id/bowButton"
             app:layout_constraintStart_toEndOf="@+id/bowButton"
             app:layout_constraintTop_toTopOf="@+id/bowButton"

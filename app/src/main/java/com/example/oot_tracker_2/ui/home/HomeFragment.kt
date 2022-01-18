@@ -4,6 +4,7 @@ import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -26,6 +27,8 @@ class HomeFragment : Fragment() {
 
     private var currentStrength: Int = 0
     private var currentHookshot: Int = 0
+    private var fireArrowClicked: Boolean = false
+    private var lightArrowClicked: Boolean = false
     //private var pauseOffSet = 0L
 
     override fun onCreateView(
@@ -50,70 +53,48 @@ class HomeFragment : Fragment() {
             hookshotChange(hookshotButton)
         }
 
-        val lightFireArrowButton: ImageButton = binding.fireLighArrowButton
-        lightFireArrowButton.setOnLongClickListener(OnLongClickListener {
-            lightFireArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow_wt_background)
-            true
+        val fireLightArrowButton: ImageButton = binding.fireLightArrowButton
+        fireLightArrowButton.setOnLongClickListener(OnLongClickListener {
+            fireArrowClick(fireLightArrowButton)
         })
-        lightFireArrowButton.setOnClickListener {
-            lightFireArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow_wt_background)
+        fireLightArrowButton.setOnClickListener {
+            lightArrowClick(fireLightArrowButton)
         }
 
-//        val chronometer: ChronometerWithMS = binding.chronometer
-//        val startStopButton: ToggleButton = binding.playPauseButton
-//        val stopButton: ImageButton = binding.stopButton
-//
-//        startStopButton.setOnClickListener {
-//            if (startStopButton.isChecked) {
-//                chronometer.restart()
-//            } else {
-//                chronometer.stop()
-//            }
-//        }
-//
-//        stopButton.setOnClickListener {
-//            if (startStopButton.isChecked) {
-//                startStopButton.toggle()
-//            }
-//            chronometer.stop()
-//            chronometer.resetTime()
-//        }
-
-//        val chronometer : Chronometer = binding.chronometer
-//
-//        chronometer.onChronometerTickListener = OnChronometerTickListener { cArg ->
-//            val time = SystemClock.elapsedRealtime() - cArg.base
-//            val h = (time / 3600000).toInt()
-//            val m = (time - h * 3600000).toInt() / 60000
-//            val s = (time - h * 3600000 - m * 60000).toInt() / 1000
-//            val hh = if (h < 10) "0$h" else h.toString() + ""
-//            val mm = if (m < 10) "0$m" else m.toString() + ""
-//            val ss = if (s < 10) "0$s" else s.toString() + ""
-//            cArg.text = "$hh:$mm:$ss"
-//        }
-//
-//        val startStopButton : ToggleButton = binding.playPauseButton
-//        val stopButton : ImageButton = binding.stopButton
-//        startStopButton.setOnClickListener{
-//            if (startStopButton.isChecked){
-//                chronometer.base = SystemClock.elapsedRealtime() - pauseOffSet
-//                chronometer.start()
-//            }else{
-//                pauseOffSet = SystemClock.elapsedRealtime() - chronometer.base
-//                chronometer.stop()
-//            }
-//        }
-//
-//        stopButton.setOnClickListener{
-//            if (startStopButton.isChecked){
-//                startStopButton.toggle()
-//            }
-//            chronometer.stop()
-//            pauseOffSet = 0L
-//            chronometer.base = SystemClock.elapsedRealtime()
-//        }
-
         return root
+    }
+
+    private fun lightArrowClick(fireLightArrowButton: ImageButton) {
+        if (!lightArrowClicked && !fireArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
+            lightArrowClicked = true
+        } else if (fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow)
+            lightArrowClicked = true
+        } else if (!fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_ice_arrow_bw)
+            lightArrowClicked = false
+        } else if (fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
+            lightArrowClicked = false
+        }
+    }
+
+    private fun fireArrowClick(fireLightArrowButton: ImageButton): Boolean {
+        if (!fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
+            fireArrowClicked = true
+        } else if (!fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow)
+            fireArrowClicked = true
+        } else if (fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_ice_arrow_bw)
+            fireArrowClicked = false
+        } else if (fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
+            fireArrowClicked = false
+        }
+        return true
     }
 
     private fun strengthChange(strengthButton: ImageButton) {
