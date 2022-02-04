@@ -15,7 +15,7 @@
 
         <ImageButton
             android:id="@+id/slingshotButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -32,7 +32,7 @@
 
         <ImageButton
             android:id="@+id/bombButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/bomb_button"
@@ -47,7 +47,7 @@
 
         <ImageButton
             android:id="@+id/bombchuButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:src="@drawable/oot3d_bombchu_icon_bw"
@@ -61,7 +61,7 @@
 
         <ImageButton
             android:id="@+id/hookshotButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
@@ -74,7 +74,7 @@
 
         <ImageButton
             android:id="@+id/bowButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:src="@drawable/oot3d_fairy_bow_icon_bw"
@@ -88,7 +88,7 @@
 
         <ImageButton
             android:id="@+id/fireLightArrowButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
@@ -101,7 +101,7 @@
 
         <ImageButton
             android:id="@+id/faroreDinButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
@@ -114,7 +114,7 @@
 
         <ImageButton
             android:id="@+id/magicButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
@@ -127,7 +127,7 @@
 
         <ImageButton
             android:id="@+id/hoverIronBootsButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="@null"
@@ -138,6 +138,130 @@
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/magicButton"
             app:layout_constraintTop_toTopOf="@+id/magicButton" />
+
+        <ImageButton
+            android:id="@+id/boomerangButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:contentDescription="@string/slingshot_button"
+            android:src="@drawable/oot3d_boomerang_icon_bw"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintEnd_toStartOf="@+id/scaleButton"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/slingshotButton" />
+
+        <ImageButton
+            android:id="@+id/scaleButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_silver_scale_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/boomerangButton"
+            app:layout_constraintEnd_toStartOf="@+id/strengthButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/boomerangButton"
+            app:layout_constraintTop_toTopOf="@+id/boomerangButton" />
+
+        <ImageButton
+            android:id="@+id/strengthButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_goron_bracelet_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/scaleButton"
+            app:layout_constraintEnd_toStartOf="@+id/lensButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/scaleButton"
+            app:layout_constraintTop_toTopOf="@+id/scaleButton" />
+
+        <ImageButton
+            android:id="@+id/lensButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_lens_of_truth_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/strengthButton"
+            app:layout_constraintEnd_toStartOf="@+id/hammerButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/strengthButton"
+            app:layout_constraintTop_toTopOf="@+id/strengthButton" />
+
+        <ImageButton
+            android:id="@+id/hammerButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_megaton_hammer_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/lensButton"
+            app:layout_constraintEnd_toStartOf="@+id/zoraGoronTunicButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/lensButton"
+            app:layout_constraintTop_toTopOf="@+id/lensButton" />
+
+        <ImageButton
+            android:id="@+id/zoraGoronTunicButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_goron_tunic_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/hammerButton"
+            app:layout_constraintEnd_toStartOf="@+id/walletButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/hammerButton"
+            app:layout_constraintTop_toTopOf="@+id/hammerButton" />
+
+        <ImageButton
+            android:id="@+id/walletButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_adult_s_wallet_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/zoraGoronTunicButton"
+            app:layout_constraintEnd_toStartOf="@+id/rutosButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/zoraGoronTunicButton"
+            app:layout_constraintTop_toTopOf="@+id/zoraGoronTunicButton" />
+
+        <ImageButton
+            android:id="@+id/rutosButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_ruto_s_letter_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/walletButton"
+            app:layout_constraintEnd_toStartOf="@+id/mirrorButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/walletButton"
+            app:layout_constraintTop_toTopOf="@+id/walletButton" />
+
+        <ImageButton
+            android:id="@+id/mirrorButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_mirror_shield_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/rutosButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/rutosButton"
+            app:layout_constraintTop_toTopOf="@+id/rutosButton" />
 
 
         <!--        <Chronometer-->

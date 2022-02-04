@@ -28,7 +28,19 @@ class HomeFragment : Fragment() {
     private var currentStrength: Int = 0
     private var currentHookshot: Int = 0
     private var currentMagic: Int = 0
+    private var currentScale: Int = 0
     private var slingShotClicked: Boolean = false
+    private var bombClicked: Boolean = false
+    private var bombchuClicked: Boolean = false
+    private var bowClicked: Boolean = false
+    private var boomerangClicked: Boolean = false
+    private var lensClicked: Boolean = false
+    private var hammerClicked: Boolean = false
+    private var goronTunicClicked: Boolean = false
+    private var zoraTunicClicked: Boolean = false
+    private var walletClicked: Boolean = false
+    private var rutosClicked: Boolean = false
+    private var mirroClicked: Boolean = false
     private var fireArrowClicked: Boolean = false
     private var lightArrowClicked: Boolean = false
     private var faroreClicked: Boolean = false
@@ -49,7 +61,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
 //        val strengthButton: ImageButton = binding.strengthButton
 //        strengthButton.setOnClickListener {
 //            strengthChange(strengthButton)
@@ -58,6 +69,32 @@ class HomeFragment : Fragment() {
         val slingShotButton: ImageButton = binding.slingshotButton
         slingShotButton.setOnClickListener {
             slingShotClicked(slingShotButton)
+        }
+
+        val bombButton: ImageButton = binding.bombButton
+        bombButton.setOnClickListener {
+            bombClicked(bombButton)
+        }
+
+        val bombchuButton: ImageButton = binding.bombchuButton
+        bombchuButton.setOnClickListener {
+            bombchuClicked(bombchuButton)
+        }
+
+        val bowButton: ImageButton = binding.bowButton
+        bowButton.setOnClickListener {
+            bowClicked(bowButton)
+        }
+
+        val boomerangButton: ImageButton = binding.boomerangButton
+        boomerangButton.setOnClickListener {
+            if (!bowClicked) {
+                bombchuButton.setImageResource(R.drawable.oot3d_fairy_bow_icon)
+                bowClicked = true
+            } else {
+                bombchuButton.setImageResource(R.drawable.oot3d_fairy_bow_icon_bw)
+                bowClicked = false
+            }
         }
 
         val hookshotButton: ImageButton = binding.hookshotButton
@@ -93,7 +130,38 @@ class HomeFragment : Fragment() {
         hoverIronBootsButton.setOnClickListener {
             ironBootsClick(hoverIronBootsButton)
         }
+
         return root
+    }
+
+    private fun bowClicked(bombchuButton: ImageButton) {
+        if (!bowClicked) {
+            bombchuButton.setImageResource(R.drawable.oot3d_fairy_bow_icon)
+            bowClicked = true
+        } else {
+            bombchuButton.setImageResource(R.drawable.oot3d_fairy_bow_icon_bw)
+            bowClicked = false
+        }
+    }
+
+    private fun bombchuClicked(bombchuButton: ImageButton) {
+        if (!bombchuClicked) {
+            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon)
+            bombchuClicked = true
+        } else {
+            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon_bw)
+            bombchuClicked = false
+        }
+    }
+
+    private fun bombClicked(bombButton: ImageButton) {
+        if (!bombClicked) {
+            bombButton.setImageResource(R.drawable.oot3d_bomb_icon)
+            bombClicked = true
+        } else {
+            bombButton.setImageResource(R.drawable.oot3d_bomb_icon_bw)
+            bombClicked = false
+        }
     }
 
     private fun slingShotClicked(slingShotButton: ImageButton) {
