@@ -54,7 +54,7 @@
             android:textOff=""
             android:textOn=""
             app:layout_constraintBottom_toBottomOf="@+id/bombButton"
-            app:layout_constraintEnd_toStartOf="@+id/hookshotButton"
+            app:layout_constraintEnd_toStartOf="@+id/strengthButton"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/bombButton"
             app:layout_constraintTop_toTopOf="@+id/bombButton" />
@@ -66,11 +66,11 @@
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_hookshot_icon_bw"
-            app:layout_constraintBottom_toBottomOf="@+id/bombchuButton"
+            app:layout_constraintBottom_toBottomOf="@+id/scaleButton"
             app:layout_constraintEnd_toStartOf="@+id/bowButton"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/bombchuButton"
-            app:layout_constraintTop_toTopOf="@+id/bombchuButton" />
+            app:layout_constraintStart_toEndOf="@+id/scaleButton"
+            app:layout_constraintTop_toTopOf="@+id/scaleButton" />
 
         <ImageButton
             android:id="@+id/bowButton"
@@ -116,11 +116,12 @@
             android:id="@+id/magicButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_magic_jar_bw"
             app:layout_constraintBottom_toBottomOf="@+id/faroreDinButton"
-            app:layout_constraintEnd_toStartOf="@+id/hoverIronBootsButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/faroreDinButton"
             app:layout_constraintTop_toTopOf="@+id/faroreDinButton" />
@@ -129,15 +130,14 @@
             android:id="@+id/hoverIronBootsButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_hover_iron_boots_icon_bw"
-            app:layout_constraintBottom_toBottomOf="@+id/magicButton"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/mirrorButton"
+            app:layout_constraintEnd_toStartOf="@+id/eggButton"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/magicButton"
-            app:layout_constraintTop_toTopOf="@+id/magicButton" />
+            app:layout_constraintStart_toEndOf="@+id/mirrorButton"
+            app:layout_constraintTop_toTopOf="@+id/mirrorButton" />
 
         <ImageButton
             android:id="@+id/boomerangButton"
@@ -150,11 +150,11 @@
             android:src="@drawable/oot3d_boomerang_icon_bw"
             android:textOff=""
             android:textOn=""
-            app:layout_constraintEnd_toStartOf="@+id/scaleButton"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slingshotButton" />
+            app:layout_constraintEnd_toStartOf="@id/scaleButton"
+            app:layout_constraintTop_toBottomOf="@id/slingshotButton" />
 
         <ImageButton
             android:id="@+id/scaleButton"
@@ -163,25 +163,24 @@
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_silver_scale_icon_bw"
-            app:layout_constraintBottom_toBottomOf="@+id/boomerangButton"
-            app:layout_constraintEnd_toStartOf="@+id/strengthButton"
+            app:layout_constraintEnd_toStartOf="@+id/hookshotButton"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/boomerangButton"
-            app:layout_constraintTop_toTopOf="@+id/boomerangButton" />
+            app:layout_constraintTop_toTopOf="@id/boomerangButton"
+            app:layout_constraintBottom_toBottomOf="@id/boomerangButton" />
 
         <ImageButton
             android:id="@+id/strengthButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_goron_bracelet_icon_bw"
-            app:layout_constraintBottom_toBottomOf="@+id/scaleButton"
+            app:layout_constraintBottom_toBottomOf="@+id/bombchuButton"
             app:layout_constraintEnd_toStartOf="@+id/lensButton"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/scaleButton"
-            app:layout_constraintTop_toTopOf="@+id/scaleButton" />
+            app:layout_constraintStart_toEndOf="@+id/bombchuButton"
+            app:layout_constraintTop_toTopOf="@+id/bombchuButton" />
 
         <ImageButton
             android:id="@+id/lensButton"
@@ -191,7 +190,7 @@
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_lens_of_truth_icon_bw"
             app:layout_constraintBottom_toBottomOf="@+id/strengthButton"
-            app:layout_constraintEnd_toStartOf="@+id/hammerButton"
+            app:layout_constraintEnd_toStartOf="@+id/rutosButton"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/strengthButton"
             app:layout_constraintTop_toTopOf="@+id/strengthButton" />
@@ -200,14 +199,16 @@
             android:id="@+id/hammerButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_megaton_hammer_icon_bw"
-            app:layout_constraintBottom_toBottomOf="@+id/lensButton"
             app:layout_constraintEnd_toStartOf="@+id/zoraGoronTunicButton"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/lensButton"
-            app:layout_constraintTop_toTopOf="@+id/lensButton" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/boomerangButton" />
 
         <ImageButton
             android:id="@+id/zoraGoronTunicButton"
@@ -219,7 +220,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/hammerButton"
             app:layout_constraintEnd_toStartOf="@+id/walletButton"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/hammerButton"
+            app:layout_constraintStart_toEndOf="@id/hammerButton"
             app:layout_constraintTop_toTopOf="@+id/hammerButton" />
 
         <ImageButton
@@ -230,7 +231,7 @@
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_adult_s_wallet_icon_bw"
             app:layout_constraintBottom_toBottomOf="@+id/zoraGoronTunicButton"
-            app:layout_constraintEnd_toStartOf="@+id/rutosButton"
+            app:layout_constraintEnd_toStartOf="@+id/mirrorButton"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/zoraGoronTunicButton"
             app:layout_constraintTop_toTopOf="@+id/zoraGoronTunicButton" />
@@ -239,24 +240,50 @@
             android:id="@+id/rutosButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_ruto_s_letter_icon_bw"
-            app:layout_constraintBottom_toBottomOf="@+id/walletButton"
-            app:layout_constraintEnd_toStartOf="@+id/mirrorButton"
+            app:layout_constraintBottom_toBottomOf="@+id/lensButton"
+            app:layout_constraintEnd_toStartOf="@+id/kokiriButton"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/walletButton"
-            app:layout_constraintTop_toTopOf="@+id/walletButton" />
+            app:layout_constraintStart_toEndOf="@+id/lensButton"
+            app:layout_constraintTop_toTopOf="@+id/lensButton" />
 
         <ImageButton
             android:id="@+id/mirrorButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:background="@null"
             android:contentDescription="@string/hookshot_button"
             android:src="@drawable/oot3d_mirror_shield_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/walletButton"
+            app:layout_constraintEnd_toStartOf="@+id/hoverIronBootsButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/walletButton"
+            app:layout_constraintTop_toTopOf="@+id/walletButton" />
+
+        <ImageButton
+            android:id="@+id/eggButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_weird_egg_icon_bw"
+            app:layout_constraintBottom_toBottomOf="@+id/hoverIronBootsButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/hoverIronBootsButton"
+            app:layout_constraintTop_toTopOf="@+id/hoverIronBootsButton" />
+
+        <ImageButton
+            android:id="@+id/kokiriButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:contentDescription="@string/hookshot_button"
+            android:src="@drawable/oot3d_kokiri_sword_icon_bw"
             app:layout_constraintBottom_toBottomOf="@+id/rutosButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="1"

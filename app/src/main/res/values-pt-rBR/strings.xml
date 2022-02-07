@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OoT Tracker</string>
+    <string name="light_mode">Modo Claro</string>
+    <string name="dark_mode">Modo Escuro</string>
+    <string name="default_mode">Padrão do Sistema</string>
+    <string name="sub_app_name_menu">Para Android</string>
+</resources>

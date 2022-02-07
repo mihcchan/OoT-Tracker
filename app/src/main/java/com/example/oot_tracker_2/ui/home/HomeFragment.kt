@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
     private var currentMagic: Int = 0
     private var currentScale: Int = 0
     private var currentWallet: Int = 0
+    private var currentEgg: Int = 0
     private var slingShotClicked: Boolean = false
     private var bombClicked: Boolean = false
     private var bombchuClicked: Boolean = false
@@ -44,6 +45,8 @@ class HomeFragment : Fragment() {
     private var dinClicked: Boolean = false
     private var ironClicked: Boolean = false
     private var hoverClicked: Boolean = false
+    private var kokiriClicked: Boolean = false
+
 
     //private var pauseOffSet = 0L
 
@@ -162,7 +165,73 @@ class HomeFragment : Fragment() {
             mirrorClick(mirrorButton)
         }
 
+        val kokiriButton: ImageButton = binding.kokiriButton
+        kokiriButton.setOnClickListener {
+            kokiriClick(kokiriButton)
+        }
+
+        val eggButton: ImageButton = binding.eggButton
+        eggButton.setOnClickListener {
+            eggChange(eggButton)
+        }
+
         return root
+    }
+
+    private fun eggChange(eggButton: ImageButton) {
+        currentEgg++
+        when (currentEgg) {
+            1 -> {
+                eggButton.setImageResource(R.drawable.oot3d_weird_egg_icon)
+            }
+            2 -> {
+                eggButton.setImageResource(R.drawable.oot3d_pocket_cucco_icon)
+            }
+            3 -> {
+                eggButton.setImageResource(R.drawable.oot3d_cojiro_icon)
+            }
+            4 -> {
+                eggButton.setImageResource(R.drawable.oot3d_odd_mushroom_icon)
+            }
+            5 -> {
+                eggButton.setImageResource(R.drawable.oot3d_odd_poultice_icon)
+            }
+            6 -> {
+                eggButton.setImageResource(R.drawable.oot3d_poacher_s_saw_icon)
+            }
+            7 -> {
+                eggButton.setImageResource(R.drawable.oot3d_broken_goron_s_sword_icon)
+            }
+            8 -> {
+                eggButton.setImageResource(R.drawable.oot3d_prescription_icon)
+            }
+            9 -> {
+                eggButton.setImageResource(R.drawable.oot3d_eyeball_frog_icon)
+            }
+            10 -> {
+                eggButton.setImageResource(R.drawable.oot3d_world_s_finest_eyedrops_icon)
+            }
+            11 -> {
+                eggButton.setImageResource(R.drawable.oot3d_claim_check_icon)
+            }
+            12 -> {
+                eggButton.setImageResource(R.drawable.oot3d_biggoron_s_sword_icon)
+            }
+            else -> {
+                eggButton.setImageResource(R.drawable.oot3d_weird_egg_icon_bw)
+                currentEgg = 0
+            }
+        }
+    }
+
+    private fun kokiriClick(kokiriButton: ImageButton) {
+        if (!kokiriClicked) {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon)
+            kokiriClicked = true
+        } else {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
+            kokiriClicked = false
+        }
     }
 
     private fun mirrorClick(mirrorButton: ImageButton) {
