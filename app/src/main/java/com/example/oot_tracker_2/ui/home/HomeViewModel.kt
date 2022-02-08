@@ -12,4 +12,13 @@ class HomeViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
+    val currentStr: MutableLiveData<ImageButton> by lazy {
+        MutableLiveData<ImageButton>()
+    }
+
+
+    private val _currentStrength = MutableLiveData<Int>().apply {
+        value = 0
+    }
+    val currentStrength: MutableLiveData<Int> = _currentStrength
 }

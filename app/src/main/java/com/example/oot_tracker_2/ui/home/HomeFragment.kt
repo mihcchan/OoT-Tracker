@@ -11,18 +11,25 @@ import com.example.oot_tracker_2.R
 import com.example.oot_tracker_2.databinding.FragmentHomeBinding
 
 import android.view.View.OnLongClickListener
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.example.oot_tracker_2.ui.SharedViewModel
+import kotlin.properties.Delegates
 
+///private var currentStrength: Int = 0
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    private val sharedViewModel: SharedViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private var currentStrength: Int = 0
+    private var currentStrength by Delegates.notNull<Int>()
     private var currentHookshot: Int = 0
     private var currentMagic: Int = 0
     private var currentScale: Int = 0
@@ -55,12 +62,44 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                currentStrength = getInt(STATE_STRENGHT)
+            }
+        } else {
+            currentStrength = 0
+        }
+
+//        currentHookshot: Int = 0
+//        currentMagic: Int = 0
+//        currentScale: Int = 0
+//        currentWallet: Int = 0
+//        private var currentEgg: Int = 0
+//        private var slingShotClicked: Boolean = false
+//        private var bombClicked: Boolean = false
+//        private var bombchuClicked: Boolean = false
+//        private var bowClicked: Boolean = false
+//        private var boomerangClicked: Boolean = false
+//        private var lensClicked: Boolean = false
+//        private var hammerClicked: Boolean = false
+//        private var goronTunicClicked: Boolean = false
+//        private var zoraTunicClicked: Boolean = false
+//        private var rutosClicked: Boolean = false
+//        private var mirrorClicked: Boolean = false
+//        private var fireArrowClicked: Boolean = false
+//        private var lightArrowClicked: Boolean = false
+//        private var faroreClicked: Boolean = false
+//        private var dinClicked: Boolean = false
+//        private var ironClicked: Boolean = false
+//        private var hoverClicked: Boolean = false
+//        private var kokiriClicked: Boolean = false
 
         val slingShotButton: ImageButton = binding.slingshotButton
         slingShotButton.setOnClickListener {
@@ -126,11 +165,38 @@ class HomeFragment : Fragment() {
             scaleChange(scaleButton)
         }
 
+        //currentStrength = homeViewModel.currentStrength.value!!
 
         val strengthButton: ImageButton = binding.strengthButton
+        strengthUpdate(strengthButton)
         strengthButton.setOnClickListener {
             strengthChange(strengthButton)
         }
+//        val strObserver = Observer<Int> { newStr ->
+//            strengthChange(strengthButton)
+//            strengthButton = newStr
+//        }
+//        homeViewModel.currentStr.observe(viewLifecycleOwner, strObserver)
+//        strengthButton.setOnClickListener { str ->
+//
+//        }
+//        strengthButton.setOnClickListener {
+//            sharedViewModel.strr.observe(viewLifecycleOwner, Observer<Int>{ str ->
+//                strengthChange(strengthButton)
+//            })
+//        }
+
+//        homeViewModel.currentStrength.observe(viewLifecycleOwner, Observer {
+//            strengthButton.setOnClickListener {
+//                strengthChange(strengthButton)
+//        })
+//        homeViewModel.currentStrength.observe(viewLifecycleOwner, Observer{
+//            strengthButton.setOnClickListener {
+//                strengthChange(strengthButton, currentStrength)
+//                homeViewModel.currentStrength.setValue(currentStrength)
+//            }
+//        })
+
 
         val lensButton: ImageButton = binding.lensButton
         lensButton.setOnClickListener {
@@ -425,6 +491,10 @@ class HomeFragment : Fragment() {
 
     private fun strengthChange(strengthButton: ImageButton) {
         currentStrength++
+        strengthUpdate(strengthButton)
+    }
+
+    private fun strengthUpdate(strengthButton: ImageButton) {
         when (currentStrength) {
             1 -> {
                 strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon)
@@ -543,5 +613,41 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+//        outState.putInt(STATE_SCORE, currentScore)
+//        outState.putInt(STATE_LEVEL, currentLevel)
+        outState.putInt(STATE_STRENGHT, currentStrength)
+        super.onSaveInstanceState(outState)
+    }
+
+    companion object {
+        val STATE_SCORE = "playerScore"
+        val STATE_LEVEL = "playerLevel"
+        val STATE_STRENGHT = "currentStrenght"
+    }
 }
+
+
+//    private fun strengthChange(strengthButton: ImageButton) {
+//        currentStrength++
+//        when (currentStrength) {
+//            1 -> {
+//                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon)
+//            }
+//            2 -> {
+//                strengthButton.setImageResource(R.drawable.oot3d_silver_gauntlets_icon)
+//            }
+//            3 -> {
+//                strengthButton.setImageResource(R.drawable.oot3d_golden_gauntlets_icon)
+//            }
+//            else -> {
+//                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon_bw)
+//                currentStrength = 0
+//            }
+//        }
+//
+//    }
+
 
