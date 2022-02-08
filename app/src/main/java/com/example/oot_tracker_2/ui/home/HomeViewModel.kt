@@ -17,8 +17,8 @@ class HomeViewModel : ViewModel() {
     }
 
 
-    private val _currentStrength = MutableLiveData<Int>().apply {
-        value = 0
-    }
-    val currentStrength: MutableLiveData<Int> = _currentStrength
+//    private val _currentStrength = MutableLiveData<Int>().apply {
+//        value = 0
+//    }
+//    val currentStrength: MutableLiveData<Int> = _currentStrength
 }

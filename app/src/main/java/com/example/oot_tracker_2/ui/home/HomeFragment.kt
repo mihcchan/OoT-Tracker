@@ -21,15 +21,15 @@ import kotlin.properties.Delegates
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private val sharedViewModel: SharedViewModel by viewModels()
+    //private lateinit var homeViewModel: HomeViewModel
+    private lateinit var sharedViewModel: SharedViewModel
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private var currentStrength by Delegates.notNull<Int>()
+    private var currentStrength: Int = 0
     private var currentHookshot: Int = 0
     private var currentMagic: Int = 0
     private var currentScale: Int = 0
@@ -54,52 +54,44 @@ class HomeFragment : Fragment() {
     private var hoverClicked: Boolean = false
     private var kokiriClicked: Boolean = false
 
-
-    //private var pauseOffSet = 0L
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+//        homeViewModel =
+//            ViewModelProvider(this)[HomeViewModel::class.java]
+        sharedViewModel =
+            ViewModelProvider(this)[SharedViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        if (savedInstanceState != null) {
-            with(savedInstanceState) {
-                currentStrength = getInt(STATE_STRENGHT)
-            }
-        } else {
-            currentStrength = 0
-        }
-
-//        currentHookshot: Int = 0
-//        currentMagic: Int = 0
-//        currentScale: Int = 0
-//        currentWallet: Int = 0
-//        private var currentEgg: Int = 0
-//        private var slingShotClicked: Boolean = false
-//        private var bombClicked: Boolean = false
-//        private var bombchuClicked: Boolean = false
-//        private var bowClicked: Boolean = false
-//        private var boomerangClicked: Boolean = false
-//        private var lensClicked: Boolean = false
-//        private var hammerClicked: Boolean = false
-//        private var goronTunicClicked: Boolean = false
-//        private var zoraTunicClicked: Boolean = false
-//        private var rutosClicked: Boolean = false
-//        private var mirrorClicked: Boolean = false
-//        private var fireArrowClicked: Boolean = false
-//        private var lightArrowClicked: Boolean = false
-//        private var faroreClicked: Boolean = false
-//        private var dinClicked: Boolean = false
-//        private var ironClicked: Boolean = false
-//        private var hoverClicked: Boolean = false
-//        private var kokiriClicked: Boolean = false
+        currentStrength = sharedViewModel.currentStrength.value!!
+        currentHookshot = sharedViewModel.currentHookshot.value!!
+        currentMagic = sharedViewModel.currentMagic.value!!
+        currentScale = sharedViewModel.currentScale.value!!
+        currentWallet = sharedViewModel.currentWallet.value!!
+        currentEgg = sharedViewModel.currentEgg.value!!
+        slingShotClicked = sharedViewModel.slingShotClicked.value!!
+        bombClicked = sharedViewModel.bombClicked.value!!
+        bombchuClicked = sharedViewModel.bombchuClicked.value!!
+        bowClicked = sharedViewModel.bowClicked.value!!
+        boomerangClicked = sharedViewModel.boomerangClicked.value!!
+        lensClicked = sharedViewModel.lensClicked.value!!
+        hammerClicked = sharedViewModel.hammerClicked.value!!
+        goronTunicClicked = sharedViewModel.goronTunicClicked.value!!
+        zoraTunicClicked = sharedViewModel.zoraTunicClicked.value!!
+        rutosClicked = sharedViewModel.rutosClicked.value!!
+        mirrorClicked = sharedViewModel.mirrorClicked.value!!
+        fireArrowClicked = sharedViewModel.fireArrowClicked.value!!
+        lightArrowClicked = sharedViewModel.lightArrowClicked.value!!
+        faroreClicked = sharedViewModel.faroreClicked.value!!
+        dinClicked = sharedViewModel.dinClicked.value!!
+        ironClicked = sharedViewModel.ironClicked.value!!
+        hoverClicked = sharedViewModel.hoverClicked.value!!
+        kokiriClicked = sharedViewModel.kokiriClicked.value!!
 
         val slingShotButton: ImageButton = binding.slingshotButton
         slingShotButton.setOnClickListener {
@@ -165,38 +157,13 @@ class HomeFragment : Fragment() {
             scaleChange(scaleButton)
         }
 
-        //currentStrength = homeViewModel.currentStrength.value!!
-
         val strengthButton: ImageButton = binding.strengthButton
-        strengthUpdate(strengthButton)
-        strengthButton.setOnClickListener {
-            strengthChange(strengthButton)
-        }
-//        val strObserver = Observer<Int> { newStr ->
-//            strengthChange(strengthButton)
-//            strengthButton = newStr
-//        }
-//        homeViewModel.currentStr.observe(viewLifecycleOwner, strObserver)
-//        strengthButton.setOnClickListener { str ->
-//
-//        }
-//        strengthButton.setOnClickListener {
-//            sharedViewModel.strr.observe(viewLifecycleOwner, Observer<Int>{ str ->
-//                strengthChange(strengthButton)
-//            })
-//        }
-
-//        homeViewModel.currentStrength.observe(viewLifecycleOwner, Observer {
-//            strengthButton.setOnClickListener {
-//                strengthChange(strengthButton)
-//        })
-//        homeViewModel.currentStrength.observe(viewLifecycleOwner, Observer{
-//            strengthButton.setOnClickListener {
-//                strengthChange(strengthButton, currentStrength)
-//                homeViewModel.currentStrength.setValue(currentStrength)
-//            }
-//        })
-
+        sharedViewModel.currentStrength.observe(viewLifecycleOwner, Observer {
+            strengthUpdate(strengthButton)
+            strengthButton.setOnClickListener {
+                strengthChange(strengthButton)
+            }
+        })
 
         val lensButton: ImageButton = binding.lensButton
         lensButton.setOnClickListener {
@@ -209,43 +176,72 @@ class HomeFragment : Fragment() {
         }
 
         val zoraGoronTunicButton: ImageButton = binding.zoraGoronTunicButton
-        zoraGoronTunicButton.setOnLongClickListener(OnLongClickListener {
-            zoraTunicClick(zoraGoronTunicButton)
+        sharedViewModel.goronTunicClicked.observe(viewLifecycleOwner, Observer {
+            goronTunicUpdate(zoraGoronTunicButton)
+            zoraGoronTunicButton.setOnClickListener {
+                goronTunicClick(zoraGoronTunicButton)
+            }
         })
-        zoraGoronTunicButton.setOnClickListener {
-            goronTunicClick(zoraGoronTunicButton)
-        }
+        sharedViewModel.zoraTunicClicked.observe(viewLifecycleOwner, Observer {
+            zoraTunicUpdate(zoraGoronTunicButton)
+            zoraGoronTunicButton.setOnLongClickListener(OnLongClickListener {
+                zoraTunicClick(zoraGoronTunicButton)
+            })
+        })
+
 
         val walletButton: ImageButton = binding.walletButton
-        walletButton.setOnClickListener {
-            walletChange(walletButton)
-        }
+        sharedViewModel.currentWallet.observe(viewLifecycleOwner, Observer {
+            walletUpdate(walletButton)
+            walletButton.setOnClickListener {
+                walletChange(walletButton)
+            }
+        })
+
 
         val rutosButton: ImageButton = binding.rutosButton
-        rutosButton.setOnClickListener {
-            rutosClick(rutosButton)
-        }
+        sharedViewModel.rutosClicked.observe(viewLifecycleOwner, Observer {
+            rutosUpdate(rutosButton)
+            rutosButton.setOnClickListener {
+                rutosClick(rutosButton)
+            }
+        })
 
         val mirrorButton: ImageButton = binding.mirrorButton
-        mirrorButton.setOnClickListener {
-            mirrorClick(mirrorButton)
-        }
+        sharedViewModel.mirrorClicked.observe(viewLifecycleOwner, Observer {
+            mirrorUpdate(mirrorButton)
+            mirrorButton.setOnClickListener {
+                mirrorClick(mirrorButton)
+            }
+        })
 
         val kokiriButton: ImageButton = binding.kokiriButton
-        kokiriButton.setOnClickListener {
-            kokiriClick(kokiriButton)
-        }
+        sharedViewModel.kokiriClicked.observe(viewLifecycleOwner, Observer {
+            kokiriUpdate(kokiriButton)
+            kokiriButton.setOnClickListener {
+                kokiriClick(kokiriButton)
+            }
+        })
+
 
         val eggButton: ImageButton = binding.eggButton
-        eggButton.setOnClickListener {
-            eggChange(eggButton)
-        }
+        sharedViewModel.currentEgg.observe(viewLifecycleOwner, Observer {
+            updateEgg(eggButton)
+            eggButton.setOnClickListener {
+                eggChange(eggButton)
+            }
+        })
 
         return root
     }
 
     private fun eggChange(eggButton: ImageButton) {
         currentEgg++
+        updateEgg(eggButton)
+        sharedViewModel.currentEgg.value = currentEgg
+    }
+
+    private fun updateEgg(eggButton: ImageButton) {
         when (currentEgg) {
             1 -> {
                 eggButton.setImageResource(R.drawable.oot3d_weird_egg_icon)
@@ -298,6 +294,15 @@ class HomeFragment : Fragment() {
             kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
             kokiriClicked = false
         }
+        sharedViewModel.kokiriClicked.value = kokiriClicked
+    }
+
+    private fun kokiriUpdate(kokiriButton: ImageButton) {
+        if (kokiriClicked) {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon)
+        } else {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
+        }
     }
 
     private fun mirrorClick(mirrorButton: ImageButton) {
@@ -307,6 +312,15 @@ class HomeFragment : Fragment() {
         } else {
             mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon_bw)
             mirrorClicked = false
+        }
+        sharedViewModel.mirrorClicked.value = mirrorClicked
+    }
+
+    private fun mirrorUpdate(mirrorButton: ImageButton) {
+        if (mirrorClicked) {
+            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon)
+        } else {
+            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon_bw)
         }
     }
 
@@ -318,6 +332,15 @@ class HomeFragment : Fragment() {
             rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon_bw)
             rutosClicked = false
         }
+        sharedViewModel.rutosClicked.value = rutosClicked
+    }
+
+    private fun rutosUpdate(rutosButton: ImageButton) {
+        if (rutosClicked) {
+            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon)
+        } else {
+            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon_bw)
+        }
     }
 
     private fun hammerClick(hammerButton: ImageButton) {
@@ -328,6 +351,7 @@ class HomeFragment : Fragment() {
             hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon_bw)
             hammerClicked = false
         }
+        sharedViewModel.hammerClicked.value = hammerClicked
     }
 
     private fun lensClick(lensButton: ImageButton) {
@@ -338,6 +362,7 @@ class HomeFragment : Fragment() {
             lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon_bw)
             lensClicked = false
         }
+        sharedViewModel.lensClicked.value = lensClicked
     }
 
     private fun boomerangClick(boomerangButton: ImageButton) {
@@ -348,6 +373,7 @@ class HomeFragment : Fragment() {
             boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon_bw)
             boomerangClicked = false
         }
+        sharedViewModel.boomerangClicked.value = boomerangClicked
     }
 
     private fun bowClicked(bombchuButton: ImageButton) {
@@ -358,6 +384,7 @@ class HomeFragment : Fragment() {
             bombchuButton.setImageResource(R.drawable.oot3d_fairy_bow_icon_bw)
             bowClicked = false
         }
+        sharedViewModel.bowClicked.value = bowClicked
     }
 
     private fun bombchuClicked(bombchuButton: ImageButton) {
@@ -368,6 +395,7 @@ class HomeFragment : Fragment() {
             bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon_bw)
             bombchuClicked = false
         }
+        sharedViewModel.bombchuClicked.value = bombchuClicked
     }
 
     private fun bombClicked(bombButton: ImageButton) {
@@ -378,6 +406,7 @@ class HomeFragment : Fragment() {
             bombButton.setImageResource(R.drawable.oot3d_bomb_icon_bw)
             bombClicked = false
         }
+        sharedViewModel.bombClicked.value = bombClicked
     }
 
     private fun slingShotClicked(slingShotButton: ImageButton) {
@@ -388,6 +417,7 @@ class HomeFragment : Fragment() {
             slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon_bw)
             slingShotClicked = false
         }
+        sharedViewModel.slingShotClicked.value = slingShotClicked
     }
 
     private fun lightArrowClick(fireLightArrowButton: ImageButton) {
@@ -404,6 +434,7 @@ class HomeFragment : Fragment() {
             fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
             lightArrowClicked = false
         }
+        sharedViewModel.lightArrowClicked.value = lightArrowClicked
     }
 
     private fun fireArrowClick(fireLightArrowButton: ImageButton): Boolean {
@@ -420,6 +451,7 @@ class HomeFragment : Fragment() {
             fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
             fireArrowClicked = false
         }
+        sharedViewModel.fireArrowClicked.value = fireArrowClicked
         return true
     }
 
@@ -437,6 +469,7 @@ class HomeFragment : Fragment() {
             faroreDinButton.setImageResource(R.drawable.oot3d_half_din_s_fire_icon)
             faroreClicked = false
         }
+        sharedViewModel.faroreClicked.value = faroreClicked
     }
 
     private fun dinClick(faroreDinButton: ImageButton): Boolean {
@@ -453,45 +486,73 @@ class HomeFragment : Fragment() {
             faroreDinButton.setImageResource(R.drawable.oot3d_half_farore_s_wind_icon)
             dinClicked = false
         }
+        sharedViewModel.dinClicked.value = dinClicked
         return true
     }
 
-    private fun ironBootsClick(fireLightArrowButton: ImageButton) {
+    private fun ironBootsClick(hoverIronButton: ImageButton) {
         if (!hoverClicked && !ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
             ironClicked = true
         } else if (hoverClicked && !ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
             ironClicked = true
         } else if (!hoverClicked && ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
             ironClicked = false
         } else if (hoverClicked && ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
             ironClicked = false
+        }
+        sharedViewModel.ironClicked.value = ironClicked
+    }
+
+    private fun ironUpdate(hoverIronButton: ImageButton) {
+        if (!hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
+        } else if (hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
+        } else if (!hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
+        } else if (hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
         }
     }
 
-    private fun hoverBootsClick(fireLightArrowButton: ImageButton): Boolean {
+    private fun hoverBootsClick(hoverIronButton: ImageButton): Boolean {
         if (!hoverClicked && !ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
             hoverClicked = true
         } else if (!hoverClicked && ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
             hoverClicked = true
         } else if (hoverClicked && !ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
             hoverClicked = false
         } else if (hoverClicked && ironClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
             hoverClicked = false
         }
+        sharedViewModel.hoverClicked.value = hoverClicked
         return true
+    }
+
+    private fun hoverUpdate(hoverIronButton: ImageButton) {
+        if (hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
+        } else if (hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
+        } else if (!hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
+        } else if (!hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
+        }
     }
 
     private fun strengthChange(strengthButton: ImageButton) {
         currentStrength++
         strengthUpdate(strengthButton)
+        sharedViewModel.currentStrength.value = currentStrength
     }
 
     private fun strengthUpdate(strengthButton: ImageButton) {
@@ -526,6 +587,7 @@ class HomeFragment : Fragment() {
                 currentMagic = 0
             }
         }
+        sharedViewModel.currentMagic.value = currentMagic
     }
 
     private fun hookshotChange(hookshotButton: ImageButton) {
@@ -542,6 +604,7 @@ class HomeFragment : Fragment() {
                 currentHookshot = 0
             }
         }
+        sharedViewModel.currentHookshot.value = currentHookshot
     }
 
     private fun scaleChange(scaleButton: ImageButton) {
@@ -558,6 +621,7 @@ class HomeFragment : Fragment() {
                 currentScale = 0
             }
         }
+        sharedViewModel.currentScale.value = currentScale
     }
 
     private fun goronTunicClick(zoraGoronTunicButton: ImageButton) {
@@ -573,6 +637,19 @@ class HomeFragment : Fragment() {
         } else if (zoraTunicClicked && goronTunicClicked) {
             zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
             goronTunicClicked = false
+        }
+        sharedViewModel.goronTunicClicked.value = goronTunicClicked
+    }
+
+    private fun goronTunicUpdate(zoraGoronTunicButton: ImageButton) {
+        if (!zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
+        } else if (!zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
+        } else if (!zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon_bw)
+        } else if (zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
         }
     }
 
@@ -590,11 +667,28 @@ class HomeFragment : Fragment() {
             zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
             zoraTunicClicked = false
         }
+        sharedViewModel.zoraTunicClicked.value = zoraTunicClicked
         return true
+    }
+
+    private fun zoraTunicUpdate(zoraGoronTunicButton: ImageButton) {
+        if (zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
+        } else if (zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
+        } else if (!zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon_bw)
+        } else if (!zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
+        }
     }
 
     private fun walletChange(walletButton: ImageButton) {
         currentWallet++
+        walletUpdate(walletButton)
+    }
+
+    private fun walletUpdate(walletButton: ImageButton) {
         when (currentWallet) {
             1 -> {
                 walletButton.setImageResource(R.drawable.oot3d_adult_s_wallet_icon)
@@ -607,6 +701,7 @@ class HomeFragment : Fragment() {
                 currentWallet = 0
             }
         }
+        sharedViewModel.currentWallet.value = currentWallet
     }
 
     override fun onDestroyView() {
@@ -615,18 +710,18 @@ class HomeFragment : Fragment() {
     }
 
 
-    override fun onSaveInstanceState(outState: Bundle) {
-//        outState.putInt(STATE_SCORE, currentScore)
-//        outState.putInt(STATE_LEVEL, currentLevel)
-        outState.putInt(STATE_STRENGHT, currentStrength)
-        super.onSaveInstanceState(outState)
-    }
-
-    companion object {
-        val STATE_SCORE = "playerScore"
-        val STATE_LEVEL = "playerLevel"
-        val STATE_STRENGHT = "currentStrenght"
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+////        outState.putInt(STATE_SCORE, currentScore)
+////        outState.putInt(STATE_LEVEL, currentLevel)
+//        outState.putInt(STATE_STRENGHT, currentStrength)
+//        super.onSaveInstanceState(outState)
+//    }
+//
+//    companion object {
+//        val STATE_SCORE = "playerScore"
+//        val STATE_LEVEL = "playerLevel"
+//        val STATE_STRENGHT = "currentStrenght"
+//    }
 }
 
 
