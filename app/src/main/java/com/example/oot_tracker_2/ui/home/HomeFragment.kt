@@ -4,18 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.oot_tracker_2.R
 import com.example.oot_tracker_2.databinding.FragmentHomeBinding
-
-import android.view.View.OnLongClickListener
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.oot_tracker_2.ui.SharedViewModel
-import kotlin.properties.Delegates
 
 ///private var currentStrength: Int = 0
 
@@ -58,7 +52,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
 //        homeViewModel =
 //            ViewModelProvider(this)[HomeViewModel::class.java]
@@ -68,6 +62,200 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        useSharedModelValues()
+
+        val slingShotButton: ImageButton = binding.slingshotButton
+        sharedViewModel.slingShotClicked.observe(viewLifecycleOwner) {
+            slingShotUpdate(slingShotButton)
+            slingShotButton.setOnClickListener {
+                slingShotClick(slingShotButton)
+            }
+        }
+
+        val bombButton: ImageButton = binding.bombButton
+        sharedViewModel.bombClicked.observe(viewLifecycleOwner) {
+            bombUpdate(bombButton)
+            bombButton.setOnClickListener {
+                bombClick(bombButton)
+            }
+        }
+
+        val bombchuButton: ImageButton = binding.bombchuButton
+        sharedViewModel.bombchuClicked.observe(viewLifecycleOwner) {
+            bombchuUpdate(bombchuButton)
+            bombchuButton.setOnClickListener {
+                bombchuClick(bombchuButton)
+            }
+        }
+
+        val strengthButton: ImageButton = binding.strengthButton
+        sharedViewModel.currentStrength.observe(viewLifecycleOwner) {
+            strengthUpdate(strengthButton)
+            strengthButton.setOnClickListener {
+                strengthClick(strengthButton)
+            }
+        }
+
+        val lensButton: ImageButton = binding.lensButton
+        sharedViewModel.lensClicked.observe(viewLifecycleOwner) {
+            lensUpdate(lensButton)
+            lensButton.setOnClickListener {
+                lensClick(lensButton)
+            }
+        }
+
+        val rutosButton: ImageButton = binding.rutosButton
+        sharedViewModel.rutosClicked.observe(viewLifecycleOwner) {
+            rutosUpdate(rutosButton)
+            rutosButton.setOnClickListener {
+                rutosClick(rutosButton)
+            }
+        }
+
+        val kokiriButton: ImageButton = binding.kokiriButton
+        sharedViewModel.kokiriClicked.observe(viewLifecycleOwner) {
+            kokiriUpdate(kokiriButton)
+            kokiriButton.setOnClickListener {
+                kokiriClick(kokiriButton)
+            }
+        }
+
+        val boomerangButton: ImageButton = binding.boomerangButton
+        sharedViewModel.boomerangClicked.observe(viewLifecycleOwner) {
+            boomerangUpdate(boomerangButton)
+            boomerangButton.setOnClickListener {
+                boomerangClick(boomerangButton)
+            }
+        }
+
+        val scaleButton: ImageButton = binding.scaleButton
+        sharedViewModel.currentScale.observe(viewLifecycleOwner) {
+            scaleUpdate(scaleButton)
+            scaleButton.setOnClickListener {
+                scaleClick(scaleButton)
+            }
+        }
+
+        val hookshotButton: ImageButton = binding.hookshotButton
+        sharedViewModel.currentHookshot.observe(viewLifecycleOwner) {
+            hookshotUpdate(hookshotButton)
+            hookshotButton.setOnClickListener {
+                hookshotClick(hookshotButton)
+            }
+        }
+
+        val bowButton: ImageButton = binding.bowButton
+        sharedViewModel.bowClicked.observe(viewLifecycleOwner) {
+            bowUpdate(bowButton)
+            bowButton.setOnClickListener {
+                bowClick(bowButton)
+            }
+        }
+
+        val fireLightArrowButton: ImageButton = binding.fireLightArrowButton
+        sharedViewModel.lightArrowClicked.observe(viewLifecycleOwner) {
+            fireLightArrowUpdate(fireLightArrowButton)
+            fireLightArrowButton.setOnClickListener {
+                lightArrowClick(fireLightArrowButton)
+            }
+        }
+        sharedViewModel.fireArrowClicked.observe(viewLifecycleOwner) {
+            fireLightArrowUpdate(fireLightArrowButton)
+            fireLightArrowButton.setOnLongClickListener {
+                fireArrowClick(fireLightArrowButton)
+                true
+            }
+        }
+
+        val faroreDinButton: ImageButton = binding.faroreDinButton
+        sharedViewModel.faroreClicked.observe(viewLifecycleOwner) {
+            faroreDinUpdate(faroreDinButton)
+            faroreDinButton.setOnClickListener {
+                faroreClick(faroreDinButton)
+            }
+        }
+        sharedViewModel.dinClicked.observe(viewLifecycleOwner) {
+            faroreDinUpdate(faroreDinButton)
+            faroreDinButton.setOnLongClickListener {
+                dinClick(faroreDinButton)
+                true
+            }
+        }
+
+        val magicButton: ImageButton = binding.magicButton
+        sharedViewModel.currentMagic.observe(viewLifecycleOwner) {
+            magicUpdate(magicButton)
+            magicButton.setOnClickListener {
+                magicClick(magicButton)
+            }
+        }
+
+        val hammerButton: ImageButton = binding.hammerButton
+        sharedViewModel.hammerClicked.observe(viewLifecycleOwner) {
+            hammerUpdate(hammerButton)
+            hammerButton.setOnClickListener {
+                hammerClick(hammerButton)
+            }
+        }
+
+        val zoraGoronTunicButton: ImageButton = binding.zoraGoronTunicButton
+        sharedViewModel.goronTunicClicked.observe(viewLifecycleOwner) {
+            zoraGoronTunicUpdate(zoraGoronTunicButton)
+            zoraGoronTunicButton.setOnClickListener {
+                goronTunicClick(zoraGoronTunicButton)
+            }
+        }
+        sharedViewModel.zoraTunicClicked.observe(viewLifecycleOwner) {
+            zoraGoronTunicUpdate(zoraGoronTunicButton)
+            zoraGoronTunicButton.setOnLongClickListener {
+                zoraTunicClick(zoraGoronTunicButton)
+                true
+            }
+        }
+
+        val walletButton: ImageButton = binding.walletButton
+        sharedViewModel.currentWallet.observe(viewLifecycleOwner) {
+            walletUpdate(walletButton)
+            walletButton.setOnClickListener {
+                walletClick(walletButton)
+            }
+        }
+
+        val mirrorButton: ImageButton = binding.mirrorButton
+        sharedViewModel.mirrorClicked.observe(viewLifecycleOwner) {
+            mirrorUpdate(mirrorButton)
+            mirrorButton.setOnClickListener {
+                mirrorClick(mirrorButton)
+            }
+        }
+
+        val hoverIronBootsButton: ImageButton = binding.hoverIronBootsButton
+        sharedViewModel.ironClicked.observe(viewLifecycleOwner) {
+            hoverIronUpdate(hoverIronBootsButton)
+            hoverIronBootsButton.setOnClickListener {
+                ironBootsClick(hoverIronBootsButton)
+            }
+        }
+        sharedViewModel.hoverClicked.observe(viewLifecycleOwner) {
+            hoverIronUpdate(hoverIronBootsButton)
+            hoverIronBootsButton.setOnLongClickListener {
+                hoverBootsClick(hoverIronBootsButton)
+                true
+            }
+        }
+
+        val eggButton: ImageButton = binding.eggButton
+        sharedViewModel.currentEgg.observe(viewLifecycleOwner) {
+            updateEgg(eggButton)
+            eggButton.setOnClickListener {
+                eggClick(eggButton)
+            }
+        }
+
+        return root
+    }
+
+    private fun useSharedModelValues() {
         currentStrength = sharedViewModel.currentStrength.value!!
         currentHookshot = sharedViewModel.currentHookshot.value!!
         currentMagic = sharedViewModel.currentMagic.value!!
@@ -92,205 +280,494 @@ class HomeFragment : Fragment() {
         ironClicked = sharedViewModel.ironClicked.value!!
         hoverClicked = sharedViewModel.hoverClicked.value!!
         kokiriClicked = sharedViewModel.kokiriClicked.value!!
-
-        val slingShotButton: ImageButton = binding.slingshotButton
-        sharedViewModel.slingShotClicked.observe(viewLifecycleOwner, Observer {
-            slingShotButton.setOnClickListener {
-                slingShotClicked(slingShotButton)
-                sharedViewModel.slingShotClicked.value = slingShotClicked
-            }
-        })
-
-        val bombButton: ImageButton = binding.bombButton
-        sharedViewModel.bombClicked.observe(viewLifecycleOwner, Observer {
-            bombButton.setOnClickListener {
-                bombClicked(bombButton)
-                sharedViewModel.bombClicked.value = bombClicked
-            }
-        })
-
-        val bombchuButton: ImageButton = binding.bombchuButton
-        sharedViewModel.bombchuClicked.observe(viewLifecycleOwner, Observer {
-            bombchuButton.setOnClickListener {
-                bombchuClicked(bombchuButton)
-                sharedViewModel.bombchuClicked.value = bombchuClicked
-            }
-        })
-
-        val bowButton: ImageButton = binding.bowButton
-        sharedViewModel.bowClicked.observe(viewLifecycleOwner, Observer {
-            bowButton.setOnClickListener {
-                bowClicked(bowButton)
-                sharedViewModel.bowClicked.value = bowClicked
-            }
-        })
-
-        val hookshotButton: ImageButton = binding.hookshotButton
-        sharedViewModel.currentHookshot.observe(viewLifecycleOwner, Observer {
-            hookshotButton.setOnClickListener {
-                hookshotChange(hookshotButton)
-                sharedViewModel.currentHookshot.value = currentHookshot
-            }
-        })
-
-        val fireLightArrowButton: ImageButton = binding.fireLightArrowButton
-        sharedViewModel.fireArrowClicked.observe(viewLifecycleOwner, Observer {
-            fireLightArrowButton.setOnLongClickListener(OnLongClickListener {
-                fireArrowClick(fireLightArrowButton)
-            })
-            //sharedViewModel.fireArrowClicked.value = fireArrowClicked
-        })
-        sharedViewModel.lightArrowClicked.observe(viewLifecycleOwner, Observer {
-            fireLightArrowButton.setOnClickListener {
-                lightArrowClick(fireLightArrowButton)
-                sharedViewModel.lightArrowClicked.value = lightArrowClicked
-            }
-        })
-
-        val faroreDinButton: ImageButton = binding.faroreDinButton
-        sharedViewModel.dinClicked.observe(viewLifecycleOwner, Observer {
-            faroreDinButton.setOnLongClickListener(OnLongClickListener {
-                dinClick(faroreDinButton)
-            })
-            //sharedViewModel.faroreClicked.value = faroreClicked
-        })
-        sharedViewModel.faroreClicked.observe(viewLifecycleOwner, Observer {
-            faroreDinButton.setOnClickListener {
-                faroreClick(faroreDinButton)
-                sharedViewModel.dinClicked.value = dinClicked
-            }
-        })
-
-        val magicButton: ImageButton = binding.magicButton
-        sharedViewModel.currentMagic.observe(viewLifecycleOwner, Observer {
-            magicButton.setOnClickListener {
-                magicChange(magicButton)
-                sharedViewModel.currentMagic.value = currentMagic
-            }
-        })
-
-        val hoverIronBootsButton: ImageButton = binding.hoverIronBootsButton
-        sharedViewModel.hoverClicked.observe(viewLifecycleOwner, Observer {
-            hoverIronBootsButton.setOnLongClickListener(OnLongClickListener {
-                hoverBootsClick(hoverIronBootsButton)
-            })
-            //sharedViewModel.hoverClicked.value = hoverClicked
-        })
-        sharedViewModel.ironClicked.observe(viewLifecycleOwner, Observer {
-            hoverIronBootsButton.setOnClickListener {
-                ironBootsClick(hoverIronBootsButton)
-                sharedViewModel.ironClicked.value = ironClicked
-            }
-        })
-
-        val boomerangButton: ImageButton = binding.boomerangButton
-        sharedViewModel.boomerangClicked.observe(viewLifecycleOwner, Observer {
-            boomerangButton.setOnClickListener {
-                boomerangClick(boomerangButton)
-                sharedViewModel.boomerangClicked.value = boomerangClicked
-            }
-        })
-
-        val scaleButton: ImageButton = binding.scaleButton
-        sharedViewModel.currentScale.observe(viewLifecycleOwner, Observer {
-            scaleButton.setOnClickListener {
-                scaleChange(scaleButton)
-                sharedViewModel.currentScale.value = currentScale
-            }
-        })
-
-        val strengthButton: ImageButton = binding.strengthButton
-        sharedViewModel.currentStrength.observe(viewLifecycleOwner, Observer {
-            strengthUpdate(strengthButton)
-            strengthButton.setOnClickListener {
-                strengthChange(strengthButton)
-                sharedViewModel.currentStrength.value = currentStrength
-            }
-        })
-
-        val lensButton: ImageButton = binding.lensButton
-        sharedViewModel.lensClicked.observe(viewLifecycleOwner, Observer {
-            lensButton.setOnClickListener {
-                lensClick(lensButton)
-                sharedViewModel.lensClicked.value = lensClicked
-            }
-        })
-
-        val hammerButton: ImageButton = binding.hammerButton
-        sharedViewModel.hammerClicked.observe(viewLifecycleOwner, Observer {
-            hammerButton.setOnClickListener {
-                hammerClick(hammerButton)
-                sharedViewModel.hammerClicked.value = hammerClicked
-            }
-        })
-
-        val zoraGoronTunicButton: ImageButton = binding.zoraGoronTunicButton
-        sharedViewModel.goronTunicClicked.observe(viewLifecycleOwner, Observer {
-            goronTunicUpdate(zoraGoronTunicButton)
-            zoraGoronTunicButton.setOnClickListener {
-                goronTunicClick(zoraGoronTunicButton)
-                sharedViewModel.goronTunicClicked.value = goronTunicClicked
-            }
-        })
-        sharedViewModel.zoraTunicClicked.observe(viewLifecycleOwner, Observer {
-            zoraTunicUpdate(zoraGoronTunicButton)
-            zoraGoronTunicButton.setOnLongClickListener(OnLongClickListener {
-                zoraTunicClick(zoraGoronTunicButton)
-            })
-            //sharedViewModel.zoraTunicClicked.value = zoraTunicClicked
-        })
-
-        val walletButton: ImageButton = binding.walletButton
-        sharedViewModel.currentWallet.observe(viewLifecycleOwner, Observer {
-            walletUpdate(walletButton)
-            walletButton.setOnClickListener {
-                walletChange(walletButton)
-                sharedViewModel.currentWallet.value = currentWallet
-            }
-        })
-
-        val rutosButton: ImageButton = binding.rutosButton
-        sharedViewModel.rutosClicked.observe(viewLifecycleOwner, Observer {
-            rutosUpdate(rutosButton)
-            rutosButton.setOnClickListener {
-                rutosClick(rutosButton)
-                sharedViewModel.rutosClicked.value = rutosClicked
-            }
-        })
-
-        val mirrorButton: ImageButton = binding.mirrorButton
-        sharedViewModel.mirrorClicked.observe(viewLifecycleOwner, Observer {
-            mirrorUpdate(mirrorButton)
-            mirrorButton.setOnClickListener {
-                mirrorClick(mirrorButton)
-                sharedViewModel.mirrorClicked.value = mirrorClicked
-            }
-        })
-
-        val kokiriButton: ImageButton = binding.kokiriButton
-        sharedViewModel.kokiriClicked.observe(viewLifecycleOwner, Observer {
-            kokiriUpdate(kokiriButton)
-            kokiriButton.setOnClickListener {
-                kokiriClick(kokiriButton)
-                sharedViewModel.kokiriClicked.value = kokiriClicked
-            }
-        })
-
-        val eggButton: ImageButton = binding.eggButton
-        sharedViewModel.currentEgg.observe(viewLifecycleOwner, Observer {
-            updateEgg(eggButton)
-            eggButton.setOnClickListener {
-                eggChange(eggButton)
-                sharedViewModel.currentEgg.value = currentEgg
-            }
-        })
-
-        return root
     }
 
-    private fun eggChange(eggButton: ImageButton) {
+    private fun slingShotClick(slingShotButton: ImageButton) {
+        if (!slingShotClicked) {
+            slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon)
+            slingShotClicked = true
+        } else {
+            slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon_bw)
+            slingShotClicked = false
+        }
+        sharedViewModel.slingShotClicked.value = slingShotClicked
+    }
+
+    private fun slingShotUpdate(slingShotButton: ImageButton) {
+        if (slingShotClicked) {
+            slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon)
+        } else {
+            slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon_bw)
+        }
+    }
+
+    private fun bombClick(bombButton: ImageButton) {
+        if (!bombClicked) {
+            bombButton.setImageResource(R.drawable.oot3d_bomb_icon)
+            bombClicked = true
+        } else {
+            bombButton.setImageResource(R.drawable.oot3d_bomb_icon_bw)
+            bombClicked = false
+        }
+        sharedViewModel.bombClicked.value = bombClicked
+    }
+
+    private fun bombUpdate(bombButton: ImageButton) {
+        if (bombClicked) {
+            bombButton.setImageResource(R.drawable.oot3d_bomb_icon)
+        } else {
+            bombButton.setImageResource(R.drawable.oot3d_bomb_icon_bw)
+        }
+    }
+
+    private fun bombchuClick(bombchuButton: ImageButton) {
+        if (!bombchuClicked) {
+            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon)
+            bombchuClicked = true
+        } else {
+            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon_bw)
+            bombchuClicked = false
+        }
+        sharedViewModel.bombchuClicked.value = bombchuClicked
+    }
+
+    private fun bombchuUpdate(bombchuButton: ImageButton) {
+        if (bombchuClicked) {
+            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon)
+        } else {
+            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon_bw)
+        }
+    }
+
+    private fun strengthClick(strengthButton: ImageButton) {
+        currentStrength++
+        strengthUpdate(strengthButton)
+        sharedViewModel.currentStrength.value = currentStrength
+    }
+
+    private fun strengthUpdate(strengthButton: ImageButton) {
+        when (currentStrength) {
+            1 -> {
+                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon)
+            }
+            2 -> {
+                strengthButton.setImageResource(R.drawable.oot3d_silver_gauntlets_icon)
+            }
+            3 -> {
+                strengthButton.setImageResource(R.drawable.oot3d_golden_gauntlets_icon)
+            }
+            else -> {
+                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon_bw)
+                currentStrength = 0
+            }
+        }
+    }
+
+    private fun lensClick(lensButton: ImageButton) {
+        if (!lensClicked) {
+            lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon)
+            lensClicked = true
+        } else {
+            lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon_bw)
+            lensClicked = false
+        }
+        sharedViewModel.lensClicked.value = lensClicked
+    }
+
+    private fun lensUpdate(lensButton: ImageButton) {
+        if (lensClicked) {
+            lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon)
+        } else {
+            lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon_bw)
+        }
+    }
+
+    private fun rutosClick(rutosButton: ImageButton) {
+        if (!rutosClicked) {
+            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon)
+            rutosClicked = true
+        } else {
+            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon_bw)
+            rutosClicked = false
+        }
+        sharedViewModel.rutosClicked.value = rutosClicked
+    }
+
+    private fun rutosUpdate(rutosButton: ImageButton) {
+        if (rutosClicked) {
+            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon)
+        } else {
+            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon_bw)
+        }
+    }
+
+    private fun kokiriClick(kokiriButton: ImageButton) {
+        if (!kokiriClicked) {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon)
+            kokiriClicked = true
+        } else {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
+            kokiriClicked = false
+        }
+        sharedViewModel.kokiriClicked.value = kokiriClicked
+    }
+
+    private fun kokiriUpdate(kokiriButton: ImageButton) {
+        if (kokiriClicked) {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon)
+        } else {
+            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
+        }
+    }
+
+    private fun boomerangClick(boomerangButton: ImageButton) {
+        if (!boomerangClicked) {
+            boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon)
+            boomerangClicked = true
+        } else {
+            boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon_bw)
+            boomerangClicked = false
+        }
+        sharedViewModel.boomerangClicked.value = boomerangClicked
+    }
+
+    private fun boomerangUpdate(boomerangButton: ImageButton) {
+        if (boomerangClicked) {
+            boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon)
+        } else {
+            boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon_bw)
+        }
+    }
+
+    private fun scaleClick(scaleButton: ImageButton) {
+        currentScale++
+        scaleUpdate(scaleButton)
+        sharedViewModel.currentScale.value = currentScale
+    }
+
+    private fun scaleUpdate(scaleButton: ImageButton) {
+        when (currentScale) {
+            1 -> {
+                scaleButton.setImageResource(R.drawable.oot3d_silver_scale_icon)
+            }
+            2 -> {
+                scaleButton.setImageResource(R.drawable.oot3d_golden_scale_icon)
+            }
+            else -> {
+                scaleButton.setImageResource(R.drawable.oot3d_silver_scale_icon_bw)
+                currentScale = 0
+            }
+        }
+    }
+
+    private fun hookshotClick(hookshotButton: ImageButton) {
+        currentHookshot++
+        hookshotUpdate(hookshotButton)
+        sharedViewModel.currentHookshot.value = currentHookshot
+    }
+
+    private fun hookshotUpdate(hookshotButton: ImageButton) {
+        when (currentHookshot) {
+            1 -> {
+                hookshotButton.setImageResource(R.drawable.oot3d_hookshot_icon)
+            }
+            2 -> {
+                hookshotButton.setImageResource(R.drawable.oot3d_longshot_icon)
+            }
+            else -> {
+                hookshotButton.setImageResource(R.drawable.oot3d_hookshot_icon_bw)
+                currentHookshot = 0
+            }
+        }
+    }
+
+    private fun bowClick(bowButton: ImageButton) {
+        if (!bowClicked) {
+            bowButton.setImageResource(R.drawable.oot3d_fairy_bow_icon)
+            bowClicked = true
+        } else {
+            bowButton.setImageResource(R.drawable.oot3d_fairy_bow_icon_bw)
+            bowClicked = false
+        }
+        sharedViewModel.bowClicked.value = bowClicked
+    }
+
+    private fun bowUpdate(bowButton: ImageButton) {
+        if (bowClicked) {
+            bowButton.setImageResource(R.drawable.oot3d_fairy_bow_icon)
+        } else {
+            bowButton.setImageResource(R.drawable.oot3d_fairy_bow_icon_bw)
+        }
+    }
+
+    private fun lightArrowClick(fireLightArrowButton: ImageButton) {
+        if (!fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
+            lightArrowClicked = true
+        } else if (fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow)
+            lightArrowClicked = true
+        } else if (!fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow_bw)
+            lightArrowClicked = false
+        } else if (fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
+            lightArrowClicked = false
+        }
+        sharedViewModel.lightArrowClicked.value = lightArrowClicked
+    }
+
+    private fun fireArrowClick(fireLightArrowButton: ImageButton) {
+        if (!fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
+            fireArrowClicked = true
+        } else if (!fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow)
+            fireArrowClicked = true
+        } else if (fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow_bw)
+            fireArrowClicked = false
+        } else if (fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
+            fireArrowClicked = false
+        }
+        sharedViewModel.fireArrowClicked.value = fireArrowClicked
+    }
+
+    private fun fireLightArrowUpdate(fireLightArrowButton: ImageButton) {
+        if (!fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
+        } else if (fireArrowClicked && lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow)
+        } else if (!fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow_bw)
+        } else if (fireArrowClicked && !lightArrowClicked) {
+            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
+        }
+    }
+
+    private fun faroreClick(faroreDinButton: ImageButton) {
+        if (!dinClicked && !faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_half_farore_s_wind_icon)
+            faroreClicked = true
+        } else if (dinClicked && !faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_din_s_fire_icon)
+            faroreClicked = true
+        } else if (!dinClicked && faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_wind_icon_bw)
+            faroreClicked = false
+        } else if (dinClicked && faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_half_din_s_fire_icon)
+            faroreClicked = false
+        }
+        sharedViewModel.faroreClicked.value = faroreClicked
+    }
+
+    private fun dinClick(faroreDinButton: ImageButton) {
+        if (!dinClicked && !faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_half_din_s_fire_icon)
+            dinClicked = true
+        } else if (!dinClicked && faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_din_s_fire_icon)
+            dinClicked = true
+        } else if (dinClicked && !faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_din_s_fire_icon_bw)
+            dinClicked = false
+        } else if (dinClicked && faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_half_farore_s_wind_icon)
+            dinClicked = false
+        }
+        sharedViewModel.dinClicked.value = dinClicked
+    }
+
+    private fun faroreDinUpdate(faroreDinButton: ImageButton) {
+        if (!dinClicked && faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_half_farore_s_wind_icon)
+        } else if (dinClicked && faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_din_s_fire_icon)
+        } else if (!dinClicked && !faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_wind_icon_bw)
+        } else if (dinClicked && !faroreClicked) {
+            faroreDinButton.setImageResource(R.drawable.oot3d_half_din_s_fire_icon)
+        }
+    }
+
+    private fun magicClick(magicButton: ImageButton) {
+        currentMagic++
+        magicUpdate(magicButton)
+        sharedViewModel.currentMagic.value = currentMagic
+    }
+
+    private fun magicUpdate(magicButton: ImageButton) {
+        when (currentMagic) {
+            1 -> {
+                magicButton.setImageResource(R.drawable.oot3d_magic_jar)
+            }
+            2 -> {
+                magicButton.setImageResource(R.drawable.oot3d_magic_jar_big)
+            }
+            else -> {
+                magicButton.setImageResource(R.drawable.oot3d_magic_jar_bw)
+                currentMagic = 0
+            }
+        }
+    }
+
+    private fun hammerClick(hammerButton: ImageButton) {
+        if (!hammerClicked) {
+            hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon)
+            hammerClicked = true
+        } else {
+            hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon_bw)
+            hammerClicked = false
+        }
+        sharedViewModel.hammerClicked.value = hammerClicked
+    }
+
+    private fun hammerUpdate(hammerButton: ImageButton) {
+        if (hammerClicked) {
+            hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon)
+        } else {
+            hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon_bw)
+        }
+    }
+
+    private fun goronTunicClick(zoraGoronTunicButton: ImageButton) {
+        if (!zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
+            goronTunicClicked = true
+        } else if (zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
+            goronTunicClicked = true
+        } else if (!zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_tunic_icon_bw)
+            goronTunicClicked = false
+        } else if (zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
+            goronTunicClicked = false
+        }
+        sharedViewModel.goronTunicClicked.value = goronTunicClicked
+    }
+
+    private fun zoraTunicClick(zoraGoronTunicButton: ImageButton) {
+        if (!zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
+            zoraTunicClicked = true
+        } else if (!zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
+            zoraTunicClicked = true
+        } else if (zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_tunic_icon_bw)
+            zoraTunicClicked = false
+        } else if (zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
+            zoraTunicClicked = false
+        }
+        sharedViewModel.zoraTunicClicked.value = zoraTunicClicked
+    }
+
+    private fun zoraGoronTunicUpdate(zoraGoronTunicButton: ImageButton) {
+        if (zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
+        } else if (zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
+        } else if (!zoraTunicClicked && !goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_tunic_icon_bw)
+        } else if (!zoraTunicClicked && goronTunicClicked) {
+            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
+        }
+    }
+
+    private fun walletClick(walletButton: ImageButton) {
+        currentWallet++
+        walletUpdate(walletButton)
+        sharedViewModel.currentWallet.value = currentWallet
+    }
+
+    private fun walletUpdate(walletButton: ImageButton) {
+        when (currentWallet) {
+            1 -> {
+                walletButton.setImageResource(R.drawable.oot3d_adult_s_wallet_icon)
+            }
+            2 -> {
+                walletButton.setImageResource(R.drawable.oot3d_giant_s_wallet_icon)
+            }
+            else -> {
+                walletButton.setImageResource(R.drawable.oot3d_adult_s_wallet_icon_bw)
+                currentWallet = 0
+            }
+        }
+    }
+
+    private fun mirrorClick(mirrorButton: ImageButton) {
+        if (!mirrorClicked) {
+            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon)
+            mirrorClicked = true
+        } else {
+            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon_bw)
+            mirrorClicked = false
+        }
+        sharedViewModel.mirrorClicked.value = mirrorClicked
+    }
+
+    private fun mirrorUpdate(mirrorButton: ImageButton) {
+        if (mirrorClicked) {
+            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon)
+        } else {
+            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon_bw)
+        }
+    }
+
+    private fun ironBootsClick(hoverIronButton: ImageButton) {
+        if (!hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
+            ironClicked = true
+        } else if (hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
+            ironClicked = true
+        } else if (!hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
+            ironClicked = false
+        } else if (hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
+            ironClicked = false
+        }
+        sharedViewModel.ironClicked.value = ironClicked
+    }
+
+    private fun hoverBootsClick(hoverIronButton: ImageButton) {
+        if (!hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
+            hoverClicked = true
+        } else if (!hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
+            hoverClicked = true
+        } else if (hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
+            hoverClicked = false
+        } else if (hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
+            hoverClicked = false
+        }
+        sharedViewModel.hoverClicked.value = hoverClicked
+    }
+
+    private fun hoverIronUpdate(hoverIronButton: ImageButton) {
+        if (hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
+        } else if (hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
+        } else if (!hoverClicked && !ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
+        } else if (!hoverClicked && ironClicked) {
+            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
+        }
+    }
+
+    private fun eggClick(eggButton: ImageButton) {
         currentEgg++
         updateEgg(eggButton)
+        sharedViewModel.currentEgg.value = currentEgg
     }
 
     private fun updateEgg(eggButton: ImageButton) {
@@ -338,440 +815,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun kokiriClick(kokiriButton: ImageButton) {
-        if (!kokiriClicked) {
-            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon)
-            kokiriClicked = true
-        } else {
-            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
-            kokiriClicked = false
-        }
-    }
-
-    private fun kokiriUpdate(kokiriButton: ImageButton) {
-        if (kokiriClicked) {
-            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon)
-        } else {
-            kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
-        }
-    }
-
-    private fun mirrorClick(mirrorButton: ImageButton) {
-        if (!mirrorClicked) {
-            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon)
-            mirrorClicked = true
-        } else {
-            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon_bw)
-            mirrorClicked = false
-        }
-    }
-
-    private fun mirrorUpdate(mirrorButton: ImageButton) {
-        if (mirrorClicked) {
-            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon)
-        } else {
-            mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon_bw)
-        }
-    }
-
-    private fun rutosClick(rutosButton: ImageButton) {
-        if (!rutosClicked) {
-            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon)
-            rutosClicked = true
-        } else {
-            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon_bw)
-            rutosClicked = false
-        }
-    }
-
-    private fun rutosUpdate(rutosButton: ImageButton) {
-        if (rutosClicked) {
-            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon)
-        } else {
-            rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon_bw)
-        }
-    }
-
-    private fun hammerClick(hammerButton: ImageButton) {
-        if (!hammerClicked) {
-            hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon)
-            hammerClicked = true
-        } else {
-            hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon_bw)
-            hammerClicked = false
-        }
-    }
-
-    private fun lensClick(lensButton: ImageButton) {
-        if (!lensClicked) {
-            lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon)
-            lensClicked = true
-        } else {
-            lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon_bw)
-            lensClicked = false
-        }
-    }
-
-    private fun boomerangClick(boomerangButton: ImageButton) {
-        if (!boomerangClicked) {
-            boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon)
-            boomerangClicked = true
-        } else {
-            boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon_bw)
-            boomerangClicked = false
-        }
-    }
-
-    private fun bowClicked(bombchuButton: ImageButton) {
-        if (!bowClicked) {
-            bombchuButton.setImageResource(R.drawable.oot3d_fairy_bow_icon)
-            bowClicked = true
-        } else {
-            bombchuButton.setImageResource(R.drawable.oot3d_fairy_bow_icon_bw)
-            bowClicked = false
-        }
-    }
-
-    private fun bombchuClicked(bombchuButton: ImageButton) {
-        if (!bombchuClicked) {
-            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon)
-            bombchuClicked = true
-        } else {
-            bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon_bw)
-            bombchuClicked = false
-        }
-    }
-
-    private fun bombClicked(bombButton: ImageButton) {
-        if (!bombClicked) {
-            bombButton.setImageResource(R.drawable.oot3d_bomb_icon)
-            bombClicked = true
-        } else {
-            bombButton.setImageResource(R.drawable.oot3d_bomb_icon_bw)
-            bombClicked = false
-        }
-    }
-
-    private fun slingShotClicked(slingShotButton: ImageButton) {
-        if (!slingShotClicked) {
-            slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon)
-            slingShotClicked = true
-        } else {
-            slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon_bw)
-            slingShotClicked = false
-        }
-    }
-
-    private fun lightArrowClick(fireLightArrowButton: ImageButton) {
-        if (!fireArrowClicked && !lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
-            lightArrowClicked = true
-        } else if (fireArrowClicked && !lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow)
-            lightArrowClicked = true
-        } else if (!fireArrowClicked && lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow_bw)
-            lightArrowClicked = false
-        } else if (fireArrowClicked && lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
-            lightArrowClicked = false
-        }
-    }
-
-    private fun fireArrowClick(fireLightArrowButton: ImageButton): Boolean {
-        if (!fireArrowClicked && !lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
-            fireArrowClicked = true
-        } else if (!fireArrowClicked && lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow)
-            fireArrowClicked = true
-        } else if (fireArrowClicked && !lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_fire_light_arrow_bw)
-            fireArrowClicked = false
-        } else if (fireArrowClicked && lightArrowClicked) {
-            fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
-            fireArrowClicked = false
-        }
-        return true
-    }
-
-    private fun faroreClick(faroreDinButton: ImageButton) {
-        if (!dinClicked && !faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_half_farore_s_wind_icon)
-            faroreClicked = true
-        } else if (dinClicked && !faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_din_s_fire_icon)
-            faroreClicked = true
-        } else if (!dinClicked && faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_wind_icon_bw)
-            faroreClicked = false
-        } else if (dinClicked && faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_half_din_s_fire_icon)
-            faroreClicked = false
-        }
-    }
-
-    private fun dinClick(faroreDinButton: ImageButton): Boolean {
-        if (!dinClicked && !faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_half_din_s_fire_icon)
-            dinClicked = true
-        } else if (!dinClicked && faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_farore_s_din_s_fire_icon)
-            dinClicked = true
-        } else if (dinClicked && !faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_din_s_fire_icon_bw)
-            dinClicked = false
-        } else if (dinClicked && faroreClicked) {
-            faroreDinButton.setImageResource(R.drawable.oot3d_half_farore_s_wind_icon)
-            dinClicked = false
-        }
-        return true
-    }
-
-    private fun ironBootsClick(hoverIronButton: ImageButton) {
-        if (!hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
-            ironClicked = true
-        } else if (hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
-            ironClicked = true
-        } else if (!hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
-            ironClicked = false
-        } else if (hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
-            ironClicked = false
-        }
-    }
-
-    private fun ironUpdate(hoverIronButton: ImageButton) {
-        if (!hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
-        } else if (hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
-        } else if (!hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
-        } else if (hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
-        }
-    }
-
-    private fun hoverBootsClick(hoverIronButton: ImageButton): Boolean {
-        if (!hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
-            hoverClicked = true
-        } else if (!hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
-            hoverClicked = true
-        } else if (hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
-            hoverClicked = false
-        } else if (hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
-            hoverClicked = false
-        }
-        return true
-    }
-
-    private fun hoverUpdate(hoverIronButton: ImageButton) {
-        if (hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
-        } else if (hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon)
-        } else if (!hoverClicked && !ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_hover_iron_boots_icon_bw)
-        } else if (!hoverClicked && ironClicked) {
-            hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
-        }
-    }
-
-    private fun strengthChange(strengthButton: ImageButton) {
-        currentStrength++
-        strengthUpdate(strengthButton)
-    }
-
-    private fun strengthUpdate(strengthButton: ImageButton) {
-        when (currentStrength) {
-            1 -> {
-                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon)
-            }
-            2 -> {
-                strengthButton.setImageResource(R.drawable.oot3d_silver_gauntlets_icon)
-            }
-            3 -> {
-                strengthButton.setImageResource(R.drawable.oot3d_golden_gauntlets_icon)
-            }
-            else -> {
-                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon_bw)
-                currentStrength = 0
-            }
-        }
-    }
-
-    private fun magicChange(magicButton: ImageButton) {
-        currentMagic++
-        when (currentMagic) {
-            1 -> {
-                magicButton.setImageResource(R.drawable.oot3d_magic_jar)
-            }
-            2 -> {
-                magicButton.setImageResource(R.drawable.oot3d_magic_jar_big)
-            }
-            else -> {
-                magicButton.setImageResource(R.drawable.oot3d_magic_jar_bw)
-                currentMagic = 0
-            }
-        }
-    }
-
-    private fun hookshotChange(hookshotButton: ImageButton) {
-        currentHookshot++
-        when (currentHookshot) {
-            1 -> {
-                hookshotButton.setImageResource(R.drawable.oot3d_hookshot_icon)
-            }
-            2 -> {
-                hookshotButton.setImageResource(R.drawable.oot3d_longshot_icon)
-            }
-            else -> {
-                hookshotButton.setImageResource(R.drawable.oot3d_hookshot_icon_bw)
-                currentHookshot = 0
-            }
-        }
-    }
-
-    private fun scaleChange(scaleButton: ImageButton) {
-        currentScale++
-        when (currentScale) {
-            1 -> {
-                scaleButton.setImageResource(R.drawable.oot3d_silver_scale_icon)
-            }
-            2 -> {
-                scaleButton.setImageResource(R.drawable.oot3d_golden_scale_icon)
-            }
-            else -> {
-                scaleButton.setImageResource(R.drawable.oot3d_silver_scale_icon_bw)
-                currentScale = 0
-            }
-        }
-    }
-
-    private fun goronTunicClick(zoraGoronTunicButton: ImageButton) {
-        if (!zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
-            goronTunicClicked = true
-        } else if (zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
-            goronTunicClicked = true
-        } else if (!zoraTunicClicked && goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon_bw)
-            goronTunicClicked = false
-        } else if (zoraTunicClicked && goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
-            goronTunicClicked = false
-        }
-    }
-
-    private fun goronTunicUpdate(zoraGoronTunicButton: ImageButton) {
-        if (!zoraTunicClicked && goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
-        } else if (!zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
-        } else if (!zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon_bw)
-        } else if (zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
-        }
-    }
-
-    private fun zoraTunicClick(zoraGoronTunicButton: ImageButton): Boolean {
-        if (!zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
-            zoraTunicClicked = true
-        } else if (!zoraTunicClicked && goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
-            zoraTunicClicked = true
-        } else if (zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon_bw)
-            zoraTunicClicked = false
-        } else if (zoraTunicClicked && goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
-            zoraTunicClicked = false
-        }
-        return true
-    }
-
-    private fun zoraTunicUpdate(zoraGoronTunicButton: ImageButton) {
-        if (zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
-        } else if (zoraTunicClicked && goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon)
-        } else if (!zoraTunicClicked && !goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_goron_zora_tunic_icon_bw)
-        } else if (!zoraTunicClicked && goronTunicClicked) {
-            zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
-        }
-    }
-
-    private fun walletChange(walletButton: ImageButton) {
-        currentWallet++
-        walletUpdate(walletButton)
-    }
-
-    private fun walletUpdate(walletButton: ImageButton) {
-        when (currentWallet) {
-            1 -> {
-                walletButton.setImageResource(R.drawable.oot3d_adult_s_wallet_icon)
-            }
-            2 -> {
-                walletButton.setImageResource(R.drawable.oot3d_giant_s_wallet_icon)
-            }
-            else -> {
-                walletButton.setImageResource(R.drawable.oot3d_adult_s_wallet_icon_bw)
-                currentWallet = 0
-            }
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-
-//    override fun onSaveInstanceState(outState: Bundle) {
-////        outState.putInt(STATE_SCORE, currentScore)
-////        outState.putInt(STATE_LEVEL, currentLevel)
-//        outState.putInt(STATE_STRENGHT, currentStrength)
-//        super.onSaveInstanceState(outState)
-//    }
-//
-//    companion object {
-//        val STATE_SCORE = "playerScore"
-//        val STATE_LEVEL = "playerLevel"
-//        val STATE_STRENGHT = "currentStrenght"
-//    }
 }
-
-
-//    private fun strengthChange(strengthButton: ImageButton) {
-//        currentStrength++
-//        when (currentStrength) {
-//            1 -> {
-//                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon)
-//            }
-//            2 -> {
-//                strengthButton.setImageResource(R.drawable.oot3d_silver_gauntlets_icon)
-//            }
-//            3 -> {
-//                strengthButton.setImageResource(R.drawable.oot3d_golden_gauntlets_icon)
-//            }
-//            else -> {
-//                strengthButton.setImageResource(R.drawable.oot3d_goron_bracelet_icon_bw)
-//                currentStrength = 0
-//            }
-//        }
-//
-//    }
-
-
