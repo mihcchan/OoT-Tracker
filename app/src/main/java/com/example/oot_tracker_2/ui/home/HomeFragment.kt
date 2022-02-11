@@ -65,8 +65,6 @@ class HomeFragment : Fragment() {
 
         sharedViewModel = ViewModelProviders.of(requireActivity())[SharedViewModel::class.java]
 
-        currentStrength = 0
-
         useSharedModelValues()
 
         val slingShotButton: ImageButton = binding.slingshotButton
