@@ -7,15 +7,18 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.oot_tracker_2.R
 import com.example.oot_tracker_2.databinding.FragmentHomeBinding
-import com.example.oot_tracker_2.ui.SharedViewModel
+import com.example.oot_tracker_2.model.SharedViewModel
 
 ///private var currentStrength: Int = 0
 
 class HomeFragment : Fragment() {
 
-    //private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: HomeViewModel
+
+    //private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var sharedViewModel: SharedViewModel
     private var _binding: FragmentHomeBinding? = null
 
@@ -54,13 +57,15 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-//        homeViewModel =
-//            ViewModelProvider(this)[HomeViewModel::class.java]
-        sharedViewModel =
-            ViewModelProvider(this)[SharedViewModel::class.java]
+        homeViewModel =
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        sharedViewModel = ViewModelProviders.of(requireActivity())[SharedViewModel::class.java]
+
+        currentStrength = 0
 
         useSharedModelValues()
 
@@ -290,7 +295,7 @@ class HomeFragment : Fragment() {
             slingShotButton.setImageResource(R.drawable.oot3d_fairy_slingshot_icon_bw)
             slingShotClicked = false
         }
-        sharedViewModel.slingShotClicked.value = slingShotClicked
+        sharedViewModel.setSlingshot(slingShotClicked)
     }
 
     private fun slingShotUpdate(slingShotButton: ImageButton) {
@@ -309,7 +314,7 @@ class HomeFragment : Fragment() {
             bombButton.setImageResource(R.drawable.oot3d_bomb_icon_bw)
             bombClicked = false
         }
-        sharedViewModel.bombClicked.value = bombClicked
+        sharedViewModel.setBomb(bombClicked)
     }
 
     private fun bombUpdate(bombButton: ImageButton) {
@@ -328,7 +333,7 @@ class HomeFragment : Fragment() {
             bombchuButton.setImageResource(R.drawable.oot3d_bombchu_icon_bw)
             bombchuClicked = false
         }
-        sharedViewModel.bombchuClicked.value = bombchuClicked
+        sharedViewModel.setBombchu(bombchuClicked)
     }
 
     private fun bombchuUpdate(bombchuButton: ImageButton) {
@@ -342,7 +347,8 @@ class HomeFragment : Fragment() {
     private fun strengthClick(strengthButton: ImageButton) {
         currentStrength++
         strengthUpdate(strengthButton)
-        sharedViewModel.currentStrength.value = currentStrength
+        sharedViewModel.setStrength(currentStrength)
+//        sharedViewModel.currentStrength.value = currentStrength
     }
 
     private fun strengthUpdate(strengthButton: ImageButton) {
@@ -371,7 +377,7 @@ class HomeFragment : Fragment() {
             lensButton.setImageResource(R.drawable.oot3d_lens_of_truth_icon_bw)
             lensClicked = false
         }
-        sharedViewModel.lensClicked.value = lensClicked
+        sharedViewModel.setLens(lensClicked)
     }
 
     private fun lensUpdate(lensButton: ImageButton) {
@@ -390,7 +396,7 @@ class HomeFragment : Fragment() {
             rutosButton.setImageResource(R.drawable.oot3d_ruto_s_letter_icon_bw)
             rutosClicked = false
         }
-        sharedViewModel.rutosClicked.value = rutosClicked
+        sharedViewModel.setRutos(rutosClicked)
     }
 
     private fun rutosUpdate(rutosButton: ImageButton) {
@@ -409,7 +415,7 @@ class HomeFragment : Fragment() {
             kokiriButton.setImageResource(R.drawable.oot3d_kokiri_sword_icon_bw)
             kokiriClicked = false
         }
-        sharedViewModel.kokiriClicked.value = kokiriClicked
+        sharedViewModel.setKokiri(kokiriClicked)
     }
 
     private fun kokiriUpdate(kokiriButton: ImageButton) {
@@ -428,7 +434,7 @@ class HomeFragment : Fragment() {
             boomerangButton.setImageResource(R.drawable.oot3d_boomerang_icon_bw)
             boomerangClicked = false
         }
-        sharedViewModel.boomerangClicked.value = boomerangClicked
+        sharedViewModel.setBoomerang(boomerangClicked)
     }
 
     private fun boomerangUpdate(boomerangButton: ImageButton) {
@@ -442,7 +448,7 @@ class HomeFragment : Fragment() {
     private fun scaleClick(scaleButton: ImageButton) {
         currentScale++
         scaleUpdate(scaleButton)
-        sharedViewModel.currentScale.value = currentScale
+        sharedViewModel.setScale(currentScale)
     }
 
     private fun scaleUpdate(scaleButton: ImageButton) {
@@ -463,7 +469,7 @@ class HomeFragment : Fragment() {
     private fun hookshotClick(hookshotButton: ImageButton) {
         currentHookshot++
         hookshotUpdate(hookshotButton)
-        sharedViewModel.currentHookshot.value = currentHookshot
+        sharedViewModel.setHookshot(currentHookshot)
     }
 
     private fun hookshotUpdate(hookshotButton: ImageButton) {
@@ -489,7 +495,7 @@ class HomeFragment : Fragment() {
             bowButton.setImageResource(R.drawable.oot3d_fairy_bow_icon_bw)
             bowClicked = false
         }
-        sharedViewModel.bowClicked.value = bowClicked
+        sharedViewModel.setBow(bowClicked)
     }
 
     private fun bowUpdate(bowButton: ImageButton) {
@@ -514,7 +520,7 @@ class HomeFragment : Fragment() {
             fireLightArrowButton.setImageResource(R.drawable.oot3d_half_fire_arrow)
             lightArrowClicked = false
         }
-        sharedViewModel.lightArrowClicked.value = lightArrowClicked
+        sharedViewModel.setLightArrow(lightArrowClicked)
     }
 
     private fun fireArrowClick(fireLightArrowButton: ImageButton) {
@@ -531,7 +537,7 @@ class HomeFragment : Fragment() {
             fireLightArrowButton.setImageResource(R.drawable.oot3d_half_light_arrow)
             fireArrowClicked = false
         }
-        sharedViewModel.fireArrowClicked.value = fireArrowClicked
+        sharedViewModel.setFireArrow(fireArrowClicked)
     }
 
     private fun fireLightArrowUpdate(fireLightArrowButton: ImageButton) {
@@ -560,7 +566,7 @@ class HomeFragment : Fragment() {
             faroreDinButton.setImageResource(R.drawable.oot3d_half_din_s_fire_icon)
             faroreClicked = false
         }
-        sharedViewModel.faroreClicked.value = faroreClicked
+        sharedViewModel.setFarores(faroreClicked)
     }
 
     private fun dinClick(faroreDinButton: ImageButton) {
@@ -577,7 +583,7 @@ class HomeFragment : Fragment() {
             faroreDinButton.setImageResource(R.drawable.oot3d_half_farore_s_wind_icon)
             dinClicked = false
         }
-        sharedViewModel.dinClicked.value = dinClicked
+        sharedViewModel.setDins(dinClicked)
     }
 
     private fun faroreDinUpdate(faroreDinButton: ImageButton) {
@@ -595,7 +601,7 @@ class HomeFragment : Fragment() {
     private fun magicClick(magicButton: ImageButton) {
         currentMagic++
         magicUpdate(magicButton)
-        sharedViewModel.currentMagic.value = currentMagic
+        sharedViewModel.setMagic(currentMagic)
     }
 
     private fun magicUpdate(magicButton: ImageButton) {
@@ -621,7 +627,7 @@ class HomeFragment : Fragment() {
             hammerButton.setImageResource(R.drawable.oot3d_megaton_hammer_icon_bw)
             hammerClicked = false
         }
-        sharedViewModel.hammerClicked.value = hammerClicked
+        sharedViewModel.setHammer(hammerClicked)
     }
 
     private fun hammerUpdate(hammerButton: ImageButton) {
@@ -646,7 +652,7 @@ class HomeFragment : Fragment() {
             zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_zora_tunic_icon)
             goronTunicClicked = false
         }
-        sharedViewModel.goronTunicClicked.value = goronTunicClicked
+        sharedViewModel.setGoronTunic(goronTunicClicked)
     }
 
     private fun zoraTunicClick(zoraGoronTunicButton: ImageButton) {
@@ -663,7 +669,7 @@ class HomeFragment : Fragment() {
             zoraGoronTunicButton.setImageResource(R.drawable.oot3d_half_goron_tunic_icon)
             zoraTunicClicked = false
         }
-        sharedViewModel.zoraTunicClicked.value = zoraTunicClicked
+        sharedViewModel.setZoraTunic(zoraTunicClicked)
     }
 
     private fun zoraGoronTunicUpdate(zoraGoronTunicButton: ImageButton) {
@@ -681,7 +687,7 @@ class HomeFragment : Fragment() {
     private fun walletClick(walletButton: ImageButton) {
         currentWallet++
         walletUpdate(walletButton)
-        sharedViewModel.currentWallet.value = currentWallet
+        sharedViewModel.setWallet(currentWallet)
     }
 
     private fun walletUpdate(walletButton: ImageButton) {
@@ -707,7 +713,7 @@ class HomeFragment : Fragment() {
             mirrorButton.setImageResource(R.drawable.oot3d_mirror_shield_icon_bw)
             mirrorClicked = false
         }
-        sharedViewModel.mirrorClicked.value = mirrorClicked
+        sharedViewModel.setMirror(mirrorClicked)
     }
 
     private fun mirrorUpdate(mirrorButton: ImageButton) {
@@ -732,7 +738,7 @@ class HomeFragment : Fragment() {
             hoverIronButton.setImageResource(R.drawable.oot3d_half_hover_boots_icon)
             ironClicked = false
         }
-        sharedViewModel.ironClicked.value = ironClicked
+        sharedViewModel.setIron(ironClicked)
     }
 
     private fun hoverBootsClick(hoverIronButton: ImageButton) {
@@ -749,7 +755,7 @@ class HomeFragment : Fragment() {
             hoverIronButton.setImageResource(R.drawable.oot3d_half_iron_boots_icon)
             hoverClicked = false
         }
-        sharedViewModel.hoverClicked.value = hoverClicked
+        sharedViewModel.setHover(hoverClicked)
     }
 
     private fun hoverIronUpdate(hoverIronButton: ImageButton) {
@@ -767,7 +773,7 @@ class HomeFragment : Fragment() {
     private fun eggClick(eggButton: ImageButton) {
         currentEgg++
         updateEgg(eggButton)
-        sharedViewModel.currentEgg.value = currentEgg
+        sharedViewModel.setEgg(currentEgg)
     }
 
     private fun updateEgg(eggButton: ImageButton) {
